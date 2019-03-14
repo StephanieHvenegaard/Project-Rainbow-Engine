@@ -38,7 +38,9 @@ import java.util.Set;
  * @author Stephanie
  */
 public class RSONObject {
+
     HashMap<String, String> elements = new HashMap<>();
+
     public static RSONObject parse(File file) throws FileNotFoundException, IllegalArgumentException {
         RSONObject robj = new RSONObject();
         int linecounter = 0;
@@ -55,32 +57,31 @@ public class RSONObject {
                 String[] sp = line.split("#"); // end of line comments.
                 sp = sp[0].split(":");
                 if (sp.length != 2) {
-                    throw new IllegalArgumentException("missing a ':' at line: " +linecounter);
+                    throw new IllegalArgumentException("missing a ':' at line: " + linecounter);
                 }
                 if (sp[0].isEmpty()) {
-                    throw new IllegalArgumentException("Missing element name at line: " +linecounter);
+                    throw new IllegalArgumentException("Missing element name at line: " + linecounter);
                 }
                 robj.put(sp[0], sp[1]);
             }
         }
         return robj;
     }
-    
+
     public String get(String key) {
         return elements.get(key);
     }
-    
+
     public void put(String key, String value) {
         elements.put(key, value);
     }
-    
-    public void save(String path) throws IOException
-    {            
+
+    public void save(String path) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(path));
-        for ( String key : elements.keySet() ) {    
+        for (String key : elements.keySet()) {
             String value = elements.get(key);
-            writer.write(key+":"+value+"\n");            
-        }     
+            writer.write(key + ":" + value + "\n");
+        }
         writer.close();
     }
 }
