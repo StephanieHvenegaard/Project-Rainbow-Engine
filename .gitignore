@@ -27,3 +27,5 @@ hs_err_pid*
 rainbowengine-actor/build/
 rainbowengine-core/build/
 rainbowengine-dnd/build/
+rainbowengine-actor/nbproject/private/
+rainbowengine-core/nbproject/private/
