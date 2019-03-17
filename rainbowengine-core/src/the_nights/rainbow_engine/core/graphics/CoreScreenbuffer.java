@@ -23,18 +23,23 @@
  */
 package the_nights.rainbow_engine.core.graphics;
 
-import the_nights.rainbow_engine.core.interfaces.IScreenBuffer;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import the_nights.rainbow_engine.core.graphics.pallates.BasePalette;
+import the_nights.rainbow_engine.core.graphics.pallates.ColorPalette;
+import the_nights.rainbow_engine.core.interfaces.IScreenBuffer;
 import the_nights.rainbow_engine.core.interfaces.ISprite;
 
+/**
+ *
+ * @author Stephanie
+ */
 public class CoreScreenbuffer implements IScreenBuffer {
     protected BufferedImage viewImage;
     protected int[] view;
-    protected BasePalette palette;
+    protected ColorPalette palette;
+    
     public CoreScreenbuffer(int width, int height) {
         viewImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         view = ((DataBufferInt) viewImage.getRaster().getDataBuffer()).getData();
@@ -76,12 +81,12 @@ public class CoreScreenbuffer implements IScreenBuffer {
     }
     @Override
     public void setPixel(int pixel, int x, int y) {
-        if (pixel == BasePalette.ALPHA_RGB) {
+        if (pixel == ColorPalette.ALPHA_RGB) {
             return;
         }
             int pixelID = x + (y * viewImage.getWidth());
             if (pixelID < view.length) {
-                view[pixelID] = pixel;
+                view[pixelID] = palette.getColor(pixel);
             }
     }
     
@@ -123,12 +128,12 @@ public class CoreScreenbuffer implements IScreenBuffer {
     }
 
     @Override
-    public BasePalette getPallete() {
+    public ColorPalette getPallete() {
         return palette;
     }
 
     @Override
-    public void setPallete(BasePalette palette) {
+    public void setPallete(ColorPalette palette) {
         this.palette = palette;
     }
 }

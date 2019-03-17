@@ -29,3 +29,6 @@ rainbowengine-core/build/
 rainbowengine-dnd/build/
 rainbowengine-actor/nbproject/private/
 rainbowengine-core/nbproject/private/
+/rainbowengine-tools/rainbowengine-RSON/build/
+/rainbowengine-tools/rainbowengine-RSON/dist/
+/rainbowengine-core/dist/
