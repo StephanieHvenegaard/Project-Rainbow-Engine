@@ -27,7 +27,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import the_nights.rainbow_engine.core.graphics.pallates.ColorPalette;
+import the_nights.rainbow_engine.core.graphics.pallates.RainbowPalette;
 import the_nights.rainbow_engine.core.interfaces.IScreenBuffer;
 import the_nights.rainbow_engine.core.interfaces.ISprite;
 
@@ -38,7 +38,7 @@ import the_nights.rainbow_engine.core.interfaces.ISprite;
 public class CoreScreenbuffer implements IScreenBuffer {
     protected BufferedImage viewImage;
     protected int[] view;
-    protected ColorPalette palette;
+    protected RainbowPalette palette;
     
     public CoreScreenbuffer(int width, int height) {
         viewImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -81,7 +81,7 @@ public class CoreScreenbuffer implements IScreenBuffer {
     }
     @Override
     public void setPixel(int pixel, int x, int y) {
-        if (pixel == ColorPalette.ALPHA_RGB) {
+        if (pixel == RainbowPalette.ALPHA_RGB) {
             return;
         }
             int pixelID = x + (y * viewImage.getWidth());
@@ -128,12 +128,12 @@ public class CoreScreenbuffer implements IScreenBuffer {
     }
 
     @Override
-    public ColorPalette getPallete() {
+    public RainbowPalette getPallete() {
         return palette;
     }
 
     @Override
-    public void setPallete(ColorPalette palette) {
+    public void setPallete(RainbowPalette palette) {
         this.palette = palette;
     }
 }

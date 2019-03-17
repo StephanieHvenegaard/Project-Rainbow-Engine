@@ -36,7 +36,7 @@ public class Text {
     private String Font;
     private int xPosition;
     private int yPosition;
-    private Color color;
+    private Color color;                    // TO-DO, Change to pallette color.
 
     public Text(String text, int size, String Font, Color color, int xPosition, int yPosition) {
         this.text = text;

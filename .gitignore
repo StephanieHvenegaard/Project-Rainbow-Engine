@@ -35,3 +35,5 @@ rainbowengine-core/nbproject/private/
 rainbowengine-actor/nbproject/
 rainbowengine-dnd/nbproject/
 rainbowengine-sound/nbproject/
+/rainbowengine-actor/dist/
+/rainbowengine-dnd/dist/
