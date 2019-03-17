@@ -30,12 +30,13 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 
 /**
  *
  * @author Stephanie
  */
-public class RainbowImage {
+public class RainbowImage implements Serializable{
     private int height = 0;
     private int width = 0;
     private byte[][] ids;                       // because max colors suported will be 255
