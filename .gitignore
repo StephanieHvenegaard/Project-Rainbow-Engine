@@ -32,3 +32,6 @@ rainbowengine-core/nbproject/private/
 /rainbowengine-tools/rainbowengine-RSON/build/
 /rainbowengine-tools/rainbowengine-RSON/dist/
 /rainbowengine-core/dist/
+rainbowengine-actor/nbproject/
+rainbowengine-dnd/nbproject/
+rainbowengine-sound/nbproject/
