@@ -24,10 +24,9 @@
 package the_nights.rainbow_engine.core.interfaces;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import the_nights.rainbow_engine.core.graphics.Rectangle;
 import the_nights.rainbow_engine.core.graphics.Text;
-import the_nights.rainbow_engine.core.graphics.pallates.BasePalette;
+import the_nights.rainbow_engine.core.graphics.pallates.ColorPalette;
 /**
  *
  * @author Stephanie
@@ -48,9 +47,9 @@ public interface IScreenBuffer {
 
     public void clear();  
     
-    public BasePalette getPallete();
+    public ColorPalette getPallete();
     
-    public void setPallete(BasePalette pallete);
+    public void setPallete(ColorPalette pallete);
 
     //public void renderRectangle(Rectangle rec, int xZoom, int yZoom);
    
