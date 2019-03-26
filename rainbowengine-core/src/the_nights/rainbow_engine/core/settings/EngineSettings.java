@@ -46,7 +46,7 @@ public class EngineSettings {
     public boolean fullscreen = false;
     public boolean borderless = false;
     public ScreenRessolution resolution = ScreenRessolution.CGA;    
-    public RainbowPalette palette;
+    public RainbowPalette palette = new RainbowPalette();
 
     public EngineSettings() throws IOException {
         try {

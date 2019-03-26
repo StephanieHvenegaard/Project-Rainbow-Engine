@@ -23,10 +23,11 @@
  */
 package the_nights.rainbow_engine.core.graphics.palettes;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import the_nights.rainbow_engine.core.FileHandler;
-import the_nigths.rson.RSONObject;
+import the_nights.rainbow_engine.core.logging.RELogger;
 
 /**
  *
@@ -62,8 +63,9 @@ public class RainbowPalette {
         RainbowPalette pall = new RainbowPalette();
         int linecounter = 0;
         int index =0;
-        
-        Scanner input = new Scanner(FileHandler.loadFile(Filename));
+       File file= FileHandler.loadFile(Filename);
+        Scanner input = new Scanner(file);
+        RELogger.writelog("Loading palette from : "+file.getAbsolutePath(), pall);
         while (input.hasNext()) {
             String line = input.nextLine();
             linecounter++;
@@ -90,8 +92,9 @@ public class RainbowPalette {
                 if(sp[0].equalsIgnoreCase("color"))
                 {
                     if(pall.size !=-1)
-                    {                        
-                        pall.colors[index]= Integer.parseInt(sp[1]);
+                    {                  
+                        String hex = sp[1].trim();
+                        pall.colors[index]= Integer.parseInt(hex,16);
                         index++;
                     }
                 }

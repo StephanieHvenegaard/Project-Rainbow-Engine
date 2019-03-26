@@ -99,6 +99,8 @@ public class Engine extends JFrame implements Runnable {
         RELogger.writelog("Resolution : " + engineSettings.resolution.getName(), this);
         RELogger.writelog("Palette    : " + engineSettings.palette.getName(), this);
         
+        
+        
         //debug rectangle.
         debugRec = new Rectangle(0, 0, 140, 50);
         debugRec.generateGrafics(0);
@@ -297,7 +299,7 @@ public class Engine extends JFrame implements Runnable {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.screenBuffer = new CoreScreenbuffer(screenWidth, screenHeight);
-        
+        this.screenBuffer.setPallete(engineSettings.palette);
     }
 
     public void setScreenBuffer(CoreScreenbuffer screenBuffer) {
