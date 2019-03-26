@@ -11,7 +11,12 @@
     <description>Builds, tests, and runs the project RainbowEngine_Core.</description>
     <import file="nbproject/build-impl.xml"/>
 	<target name="-post-compile">
-		<copy file="enginesettings.rson" todir="${dist.dir}"/>        
+		<copy file="enginesettings.rson" todir="${dist.dir}"/>  
+         <copy todir="${dist.dir}/palette/">
+        <fileset dir="palette/">
+            <include name="**/**"/>
+        </fileset>
+    </copy>
 	</target>
     <!--
 

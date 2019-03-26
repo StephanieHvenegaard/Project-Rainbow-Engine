@@ -27,7 +27,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import the_nights.rainbow_engine.core.graphics.pallates.RainbowPalette;
+import the_nights.rainbow_engine.core.graphics.palettes.RainbowPalette;
 import the_nights.rainbow_engine.core.interfaces.IScreenBuffer;
 import the_nights.rainbow_engine.core.interfaces.ISprite;
 

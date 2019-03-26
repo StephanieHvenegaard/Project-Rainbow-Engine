@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package the_nights.rainbow_engine.core.graphics.pallates;
+package the_nights.rainbow_engine.core.graphics.palettes;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

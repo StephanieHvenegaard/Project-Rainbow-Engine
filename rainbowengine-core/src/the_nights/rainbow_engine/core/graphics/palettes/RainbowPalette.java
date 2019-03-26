@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package the_nights.rainbow_engine.core.graphics.pallates;
+package the_nights.rainbow_engine.core.graphics.palettes;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -37,6 +37,7 @@ public class RainbowPalette {
     public static String EXTENSION = ".rp";
     protected int[] colors;   
     private int size=-1;
+    private String name = "c64";
     public int getColor(int id) {
         if(id == -1)
             return ALPHA_RGB;
@@ -46,6 +47,16 @@ public class RainbowPalette {
     public int getPalleteSize() {
         return colors.length;
     }    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
     public static RainbowPalette LoadPallete(String Filename) throws FileNotFoundException
     {
         RainbowPalette pall = new RainbowPalette();
@@ -92,4 +103,5 @@ public class RainbowPalette {
         }
         return pall;
     }
+    
 }

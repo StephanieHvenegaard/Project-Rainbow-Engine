@@ -23,7 +23,7 @@
  */
 package the_nights.rainbow_engine.core.graphics;
 
-import the_nights.rainbow_engine.core.graphics.pallates.RainbowPalette;
+import the_nights.rainbow_engine.core.graphics.palettes.RainbowPalette;
 
 /**
  *

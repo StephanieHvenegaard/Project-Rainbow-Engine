@@ -27,6 +27,6 @@ package the_nights.rainbow_engine.core.settings;
  *
  * @author Stephanie
  */
-public class DefaultGameSettings {
+public class OBS_DefaultGameSettings {
     
 }

@@ -28,6 +28,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import the_nights.rainbow_engine.core.FileHandler;
+import the_nights.rainbow_engine.core.graphics.palettes.RainbowPalette;
 import the_nights.rainbow_engine.core.logging.RELogger;
 import the_nigths.rson.RSONObject;
 
@@ -38,13 +40,15 @@ import the_nigths.rson.RSONObject;
 public class EngineSettings {
 
     private String path = "enginesettings.rson";
+    private RSONObject savefile;
+    
     public int desiredSpeed = 30;
     public boolean fullscreen = false;
     public boolean borderless = false;
-    public ScreenRessolution resolution = ScreenRessolution.CGA;
-    private RSONObject savefile;
+    public ScreenRessolution resolution = ScreenRessolution.CGA;    
+    public RainbowPalette palette;
 
-    public EngineSettings() {
+    public EngineSettings() throws IOException {
         try {
             savefile = RSONObject.parse(new File(path));
         } catch (FileNotFoundException ex) {
@@ -53,21 +57,16 @@ public class EngineSettings {
             savefile.put("fullscreen", "false");
             savefile.put("borderless", "false");
             savefile.put("resolution", ScreenRessolution.CGA.index +"");
-            try {
+            savefile.put("palette",palette.getName());            
                 savefile.save(path);
-            } catch (IOException ex1) {
-                RELogger.writelog("failed to write settings file.", this);
-                RELogger.writelog(ex1.getMessage(), this);
-            }
-        } catch (IllegalArgumentException ex) {
-            RELogger.writelog("failed to read argument.", this);
-            RELogger.writelog(ex.getMessage(), this);
         }
+
         
         this.desiredSpeed = Integer.parseInt(savefile.get("desiredSpeed"));
         this.borderless = Boolean.parseBoolean(savefile.get("fullscreen"));
         this.borderless = Boolean.parseBoolean(savefile.get("borderless"));
         this.resolution = ScreenRessolution.fromId(Integer.parseInt(savefile.get("resolution")));
+        this.palette = RainbowPalette.LoadPallete("palette/"+savefile.get("palette")+RainbowPalette.EXTENSION);
     }
 
     public String get(String key) {

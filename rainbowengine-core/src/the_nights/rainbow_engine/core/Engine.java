@@ -51,13 +51,12 @@ public class Engine extends JFrame implements Runnable {
     //Static 
     //public static final RLogger LOG = new RLogger();
     private static boolean _showDebugInfo = false;
-   
+    public static String ENGINE_VERSION = "0.1.15";
+    
     private IGame game;
     //private String DefaultFont = "Arial";
     private final String DEFAULT_FONT = "Consolas";
-
-    //private boolean showFPSs = true;
-    //private boolean borderless = false;
+ 
     // double
     public static final double NANOSEC_TO_SEC = 1000000000.0;
     public static final double NANOSEC_TO_MILLISEC = 1000000.0;
@@ -74,7 +73,7 @@ public class Engine extends JFrame implements Runnable {
 
     // Components
     private Canvas canvas = new Canvas();
-    private EngineSettings engineSettings = new EngineSettings();
+    private EngineSettings engineSettings;
     private IScreenBuffer screenBuffer;
     private KeyboardListner keyboardListner = new KeyboardListner(this);
     private MouseEventListner mouseEventListner = new MouseEventListner(this);
@@ -84,19 +83,21 @@ public class Engine extends JFrame implements Runnable {
         
         try {
             Image img = ImageIO.read(getClass().getResourceAsStream("/icon.png"));
-            this.setIconImage(img);
+              this.setIconImage(img);
+            engineSettings = new EngineSettings();
+          
         } catch (IOException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        RELogger.writelog("Starting engine version", this);
         RELogger.writelog("Showing splashscreen", this);
-        showSplashScreen();
-        
+        showSplashScreen();        
         RELogger.writelog("Loading settings", this);         
         RELogger.writelog("Initializing Engine", this);
         RELogger.writelog("Borderless : " + engineSettings.borderless, this);
         RELogger.writelog("fullscreen : " + engineSettings.fullscreen, this);
         RELogger.writelog("Resolution : " + engineSettings.resolution.getName(), this);
+        RELogger.writelog("Palette    : " + engineSettings.palette.getName(), this);
         
         //debug rectangle.
         debugRec = new Rectangle(0, 0, 140, 50);
