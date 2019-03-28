@@ -23,7 +23,7 @@
  */
 package the_nights.players.graphics;
 
-import the_nights.rainbow_engine.core.interfaces.ISprite;
+import the_nights.rainbow_engine.core.interfaces.OBS_ISprite;
 
 /**
  *
@@ -63,18 +63,18 @@ public class AnimatedSprite extends Sprite {//implements ICoreObject{
         }
     }
 
-    @Override
-    public int[] getPixels() {
-        return sprites[frameID].getPixels();
-    }
-
-    public ISprite getCurrentSprite() {
-        return sprites[frameID];
-    }
-
-    public ISprite[] getSprites() {
-        return sprites;
-    }
+//    @Override
+//    public int[] getPixels() {
+//        return sprites[frameID].getPixels();
+//    }
+//
+//    public OBS_ISprite getCurrentSprite() {
+//        return sprites[frameID];
+//    }
+//
+//    public OBS_ISprite[] getSprites() {
+//        return sprites;
+//    }
 
     public int getFrameID() {
         return frameID;

@@ -22,12 +22,12 @@
  * SOFTWARE.
  */
 package the_nights.rainbow_engine.core.interfaces;
-
 /**
  *
  * @author Stephanie
  */
-public interface ISprite{
+@Deprecated
+public interface OBS_ISprite{
 
     public int[] getPixels();
 

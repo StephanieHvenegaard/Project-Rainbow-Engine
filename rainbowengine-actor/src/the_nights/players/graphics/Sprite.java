@@ -25,55 +25,59 @@ package the_nights.players.graphics;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import the_nights.rainbow_engine.core.interfaces.ISprite;
+import the_nights.rainbow_engine.core.graphics.RainbowImage;
+import the_nights.rainbow_engine.core.interfaces.OBS_ISprite;
 
 /**
  *
  * @author Stephanie
  */
-public class Sprite implements ISprite{
-    private final  int width;
-    private final int height;
-    private int[] pixels;
+public class Sprite{
+    //private final  int width;
+    //private final int height;
+    //private int[] pixels;
+    private RainbowImage sprite;
     
-    public Sprite(SpriteSheet sheet,int startX,int startY,int width,int height)
+    
+//    public Sprite(RainbowImage sheet,int startX,int startY,int width,int height)
+//    {
+//        this.height = height;
+//        this.width = width;
+//        //this.pixels = ((DataBufferInt) sheet.getSheet().getRaster().getDataBuffer()).getData();
+////                = new int[height*width];
+////        sheet.getSheet().getRGB(startX, startY, width, height, pixels, 0,width);
+//    }
+//    public Sprite(int size, int[] pixels)
+//    {
+//        this.height =size;
+//        this.width =size;
+//        this.pixels = pixels;
+//    }
+    public Sprite(RainbowImage sprite)
     {
-        this.height = height;
-        this.width = width;
-        this.pixels = ((DataBufferInt) sheet.getSheet().getRaster().getDataBuffer()).getData();
-//                = new int[height*width];
-//        sheet.getSheet().getRGB(startX, startY, width, height, pixels, 0,width);
-    }
-    public Sprite(int size, int[] pixels)
-    {
-        this.height =size;
-        this.width =size;
-        this.pixels = pixels;
-    }
-    public Sprite(BufferedImage sprite)
-    {
-        this.width = sprite.getWidth();
-        this.height = sprite.getHeight();
-        this.pixels = ((DataBufferInt) sprite.getRaster().getDataBuffer()).getData();
+        this.sprite = sprite;
+//        this.width = sprite.getWidth();
+//        this.height = sprite.getHeight();
+         //((DataBufferInt) sprite.getRaster().getDataBuffer()).getData();
 //      isb.renderPixels(imagePixels, 0,0, uibg.getWidth(), uibg.getHeight());
 //      sprite.getRGB(0,0,width,height,pixels,0,width);
     }
     public Sprite()
     {
-        this.height = -1;
-        this.width =-1;
-        this.pixels = null;
+//        this.height = -1;
+//        this.width =-1;
+        this.sprite = null;
     }
     
-    public int[] getPixels() {
-        return pixels;
+    public  RainbowImage getImage() {
+        return sprite;
     } 
 
     public int getWidth() {
-        return width;
+        return sprite.getWidth();
     }
 
     public int getHeight() {
-        return height;
+        return sprite.getHeight();
     }    
 }

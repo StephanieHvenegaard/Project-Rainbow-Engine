@@ -26,6 +26,10 @@ public class Converter {
      */
     public static void main(String[] args) {
         ImageConver converter = new ImageConver();
-        converter.Start();
+        try {
+            converter.Start();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

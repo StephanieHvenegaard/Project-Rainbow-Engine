@@ -29,7 +29,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import the_nights.rainbow_engine.core.graphics.palettes.RainbowPalette;
 import the_nights.rainbow_engine.core.interfaces.IScreenBuffer;
-import the_nights.rainbow_engine.core.interfaces.ISprite;
+import the_nights.rainbow_engine.core.interfaces.OBS_ISprite;
 
 /**
  *
@@ -48,7 +48,8 @@ public class CoreScreenbuffer implements IScreenBuffer {
     public void renderRectangle(Rectangle rec) {
         int[] recPixels = rec.getPixels();
         if (recPixels != null) {
-            renderPixels(recPixels, rec.getX(), rec.getY(), rec.getWidth(), rec.getHeight());
+            //TODO: FIX Later.
+//            renderPixels(recPixels, rec.getX(), rec.getY(), rec.getWidth(), rec.getHeight());
         }
     }
     @Override
@@ -66,19 +67,20 @@ public class CoreScreenbuffer implements IScreenBuffer {
         }
     }
     @Override
-    public void renderSprite(ISprite sprite, int xPosition, int yPosition) {
-        renderPixels(sprite.getPixels(), xPosition, yPosition, sprite.getWidth(), sprite.getHeight());
+    public void renderRImage(RainbowImage image, int x, int y) {
+        
+//        renderPixels(sprite.getPixels(), xPosition, yPosition, sprite.getWidth(), sprite.getHeight());
     }
-    @Override
-    public void renderPixels(int[] renderPixels, int xPosition, int yPosition, int renderWidth, int renderHeight) {
-        for (int y = 0; y < renderHeight; y++) {
-            for (int x = 0; x < renderWidth; x++) {
-                int pixelID = x + (y * renderWidth);
-                int pixel = renderPixels[pixelID];
-                setPixel(pixel, x+xPosition, y+yPosition);
-            }
-        }
-    }
+//    @Override
+//    public void renderPixels(int[] renderPixels, int xPosition, int yPosition, int renderWidth, int renderHeight) {
+//        for (int y = 0; y < renderHeight; y++) {
+//            for (int x = 0; x < renderWidth; x++) {
+//                int pixelID = x + (y * renderWidth);
+//                int pixel = renderPixels[pixelID];
+//                setPixel(pixel, x+xPosition, y+yPosition);
+//            }
+//        }
+//    }
     @Override
     public void setPixel(int pixel, int x, int y) {
         if (pixel == RainbowPalette.ALPHA_RGB) {
@@ -146,12 +148,12 @@ public class CoreScreenbuffer implements IScreenBuffer {
 //    }
 //
 //    @Override
-//    public void renderSprite(ISprite sprite, int xPosition, int yPosition, boolean renderBackground) {
+//    public void renderSprite(OBS_ISprite sprite, int xPosition, int yPosition, boolean renderBackground) {
 //        renderSprite(sprite, xPosition, yPosition, 1, 1, renderBackground);
 //    }
 //
 //    @Override
-//    public void renderSprite(ISprite sprite, int xPosition, int yPosition, int xZoom, int yZoom, boolean renderBackground) {
+//    public void renderSprite(OBS_ISprite sprite, int xPosition, int yPosition, int xZoom, int yZoom, boolean renderBackground) {
 //        sprite.getPixels();
 //        if (renderBackground) {
 //            renderBackgroundPixels( sprite.getPixels(), xPosition, yPosition, sprite.getWidth(), sprite.getHeight(), xZoom, yZoom);

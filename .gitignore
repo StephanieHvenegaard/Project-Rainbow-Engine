@@ -15,3 +15,6 @@ rainbowengine-core/dist/
 rainbowengine-core/nbproject/private/
 rainbowengine-dnd/build/
 rainbowengine-sound/dist/
+/rainbowengine-actor/dist/
+/rainbowengine-dnd/dist/
+/rainbowengine-tools/rainbowengine-imgconverter/dist/

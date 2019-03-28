@@ -75,43 +75,42 @@ public class SpriteSheet {
         if (id < sprites.length) {
             return sprites[id];
         } else {
-            System.out.println("ID " + id+ " is out of range for this sprite sheet.  Only "+sprites.length+" sprites loaded");
+            System.out.println("ID " + id + " is out of range for this sprite sheet.  Only " + sprites.length + " sprites loaded");
             return null;
         }
     }
 
     public Sprite getSprite(int x, int y) {
-        int width = (WIDTH/SPRITE_SIZE);
-        int id = x + (y*width);
+        int width = (WIDTH / SPRITE_SIZE);
+        int id = x + (y * width);
         //System.out.println("fetching sprite x:"+x +" y:"+y+ " with id:"+id);
         return getSprite(id);
     }
-    
+
     public Sprite[] getSprites(int row) {
-        Sprite[] returnedSprites = new Sprite[(WIDTH / SPRITE_SIZE)];        
-        for(int i =0; i < returnedSprites.length; i++)
-        {
-            returnedSprites[i] = getSprite(i,row);
+        Sprite[] returnedSprites = new Sprite[(WIDTH / SPRITE_SIZE)];
+        for (int i = 0; i < returnedSprites.length; i++) {
+            returnedSprites[i] = getSprite(i, row);
         }
         return returnedSprites;
     }
-    
-     public int[] getSpritePixels(int startX, int startY, int w, int h,
-                        int[] rgbArray, int offset, int scansize) {
-        int yoff  = offset;
-        int off;       
+
+    public int[] getSpritePixels(int startX, int startY, int w, int h,
+            int[] rgbArray, int offset, int scansize) {
+        int yoff = offset;
+        int off;
         if (rgbArray == null) {
-            rgbArray = new int[offset+h*scansize];
+            rgbArray = new int[offset + h * scansize];
         }
 
-        for (int y = startY; y < startY+h; y++, yoff+=scansize) {
+        for (int y = startY; y < startY + h; y++, yoff += scansize) {
             off = yoff;
-            for (int x = startX; x < startX+w; x++) {
-                rgbArray[off++] = pixels[x+y];
+            for (int x = startX; x < startX + w; x++) {
+                rgbArray[off++] = pixels[x + y];
             }
         }
 
         return rgbArray;
     }
-    
+
 }

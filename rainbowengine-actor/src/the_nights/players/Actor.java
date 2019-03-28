@@ -31,14 +31,13 @@ import the_nights.rainbow_engine.core.interfaces.ICoreObject;
 import the_nights.rainbow_engine.core.interfaces.IMoveable;
 import the_nights.rainbow_engine.core.interfaces.IPlacable;
 import the_nights.rainbow_engine.core.interfaces.IScreenBuffer;
-import the_nights.rainbow_engine.core.interfaces.ISprite;
 /**
  *
  * @author Stephanie
  */
 public abstract class Actor extends GameObject implements ICoreObject, IPlacable, IMoveable {
     protected final AnimatedSprite[] animTree;
-    protected ISprite sprite;
+    protected Sprite sprite;
     protected Rectangle rPlacement;
     protected Rectangle rCollisionBox;
     protected int activeAnimTree = 0;
@@ -46,7 +45,7 @@ public abstract class Actor extends GameObject implements ICoreObject, IPlacable
     protected int health;
     public Actor(AnimatedSprite[] animTree, int speed) {
         this.animTree = animTree;
-        this.sprite = animTree[0].getCurrentSprite();
+        this.sprite = null;
         this.rPlacement = new Rectangle(0, 0, sprite.getWidth(), sprite.getHeight());
         this.rCollisionBox = new Rectangle(0, 0, sprite.getWidth(), sprite.getHeight());
         this.speed = speed;
@@ -72,7 +71,7 @@ public abstract class Actor extends GameObject implements ICoreObject, IPlacable
     public int getY() {
         return rPlacement.getY();
     }
-    public ISprite getSprite() {
+    public Sprite getSprite() {
         return sprite;
     }
     @Override

@@ -89,15 +89,15 @@ public class Engine extends JFrame implements Runnable {
         } catch (IOException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
         }
-        RELogger.writelog("Starting engine version", this);
+        RELogger.writelog("Starting engine version : "+ENGINE_VERSION, this);
         RELogger.writelog("Showing splashscreen", this);
         showSplashScreen();        
         RELogger.writelog("Loading settings", this);         
         RELogger.writelog("Initializing Engine", this);
-        RELogger.writelog("Borderless : " + engineSettings.borderless, this);
-        RELogger.writelog("fullscreen : " + engineSettings.fullscreen, this);
-        RELogger.writelog("Resolution : " + engineSettings.resolution.getName(), this);
-        RELogger.writelog("Palette    : " + engineSettings.palette.getName(), this);
+        RELogger.writelog("Borderless              : " + engineSettings.borderless, this);
+        RELogger.writelog("fullscreen              : " + engineSettings.fullscreen, this);
+        RELogger.writelog("Resolution              : " + engineSettings.resolution.getName(), this);
+        RELogger.writelog("Palette                 : " + engineSettings.palette.getName(), this);
         
         
         

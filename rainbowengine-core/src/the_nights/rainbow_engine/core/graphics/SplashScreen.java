@@ -24,15 +24,12 @@
 package the_nights.rainbow_engine.core.graphics;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import the_nights.rainbow_engine.core.Engine;
 import the_nights.rainbow_engine.core.logging.RELogger;
 
 /**

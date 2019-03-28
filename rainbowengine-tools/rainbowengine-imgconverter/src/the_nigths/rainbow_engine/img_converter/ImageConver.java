@@ -13,8 +13,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import the_nights.rainbow_engine.core.graphics.palettes.RainbowImage;
 
 /**
  *
@@ -25,7 +23,7 @@ public class ImageConver {
     String sp = "+--------------------------------------------+";
     File file;
 
-    public void Start() {
+    public void Start() throws IOException {
         System.out.println(sp);
         System.out.println("| welcome to the image converter.            |");
         System.out.println("| this software can be used to               |");
@@ -36,10 +34,9 @@ public class ImageConver {
         System.out.println("| Please choose a file to convert.           |");
         file = picFile();
         if (file != null) {
-
+            converRS();
         }
-        System.out.println("Good bi");
-
+        System.out.println("Good-bi");
     }
 
     private File picFile() {
@@ -54,7 +51,6 @@ public class ImageConver {
             f = fc.getSelectedFile();
             System.out.println("| Opening: " + f.getName());
         }
-
         return f;
     }
 
@@ -79,13 +75,13 @@ public class ImageConver {
 //    }    
     }
 
-    public void converRS(File file) throws IOException {
+    public void converRS() throws IOException {
         
         BufferedImage image = utils.loadImage(file);
         if (image != null) {
             System.out.println(sp);
             System.out.println("| found and image starting converting       |");
-            String filename = file.getPath() + getFileName() + ".rsprite";
+            String filename =  getFileName() + ".rsprite";
             System.out.println("original : " + file.toString());
             System.out.println("new file : " + filename);
             ArrayList<Integer> palette = new ArrayList<>();

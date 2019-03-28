@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package the_nights.rainbow_engine.core.graphics.palettes;
+package the_nights.rainbow_engine.core.graphics;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -63,7 +63,7 @@ public class RainbowImage implements Serializable{
     public int getWidth() {
         return width;
     }    
-    
+    @Deprecated
     public static void saveImage(RainbowImage ri,String Filename ) throws IOException { 
         OutputStream outStream = new FileOutputStream(Filename);    
         ObjectOutputStream fileObjectOut = new ObjectOutputStream(outStream);
@@ -71,7 +71,7 @@ public class RainbowImage implements Serializable{
         fileObjectOut.close();
         outStream.close();
     }  
-
+    @Deprecated
     public static RainbowImage loadImage(String Filename) throws IOException, ClassNotFoundException {
         InputStream inStream = new FileInputStream(Filename);
         ObjectInputStream fileObjectIn = new ObjectInputStream(inStream);

@@ -24,6 +24,7 @@
 package the_nights.rainbow_engine.core.interfaces;
 
 import java.awt.Graphics;
+import the_nights.rainbow_engine.core.graphics.RainbowImage;
 import the_nights.rainbow_engine.core.graphics.Rectangle;
 import the_nights.rainbow_engine.core.graphics.Text;
 import the_nights.rainbow_engine.core.graphics.palettes.RainbowPalette;
@@ -33,13 +34,15 @@ import the_nights.rainbow_engine.core.graphics.palettes.RainbowPalette;
  */
 public interface IScreenBuffer {
 
-    public void renderSprite(ISprite sprite, int xPosition, int yPosition);
+    public void renderRImage(RainbowImage image, int x, int y);
+    
+    //public void renderSprite(OBS_ISprite sprite, int xPosition, int yPosition);
     
     public void renderRectangle(Rectangle rec);
     
     public void renderString(Text text);
 
-    public void renderPixels(int[] renderPixels, int xPosition, int yPosition, int renderWidth, int renderHeight);
+    //public void renderPixels(int[] renderPixels, int xPosition, int yPosition, int renderWidth, int renderHeight);
 
     public void setPixel(int pixel, int x, int y);   
 
@@ -55,7 +58,7 @@ public interface IScreenBuffer {
    
     //public void renderImage(BufferedImage image, int xPosition, int yPosition, int xZoom, int yZoom);
 
-    //public void renderSprite(ISprite sprite, int xPosition, int yPosition, int xZoom, int yZoom);
+    //public void renderSprite(OBS_ISprite sprite, int xPosition, int yPosition, int xZoom, int yZoom);
     
     //public void renderString(String s, String fontName, int fontSize, int xPosition, int yPosition);
 
