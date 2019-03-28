@@ -101,9 +101,9 @@ public abstract class Actor extends GameObject implements ICoreObject, IPlacable
     @Override
     public void render(IScreenBuffer screenBuffer) {
         if (animTree != null) {
-            screenBuffer.renderSprite(animTree[activeAnimTree].getCurrentSprite(), rPlacement.getX(), rPlacement.getY());
+            screenBuffer.renderRImage(animTree[activeAnimTree].getImage(), rPlacement.getX(), rPlacement.getY()); //renderSprite(animTree[activeAnimTree].getCurrentSprite(), rPlacement.getX(), rPlacement.getY());
         } else if (sprite != null) {
-            screenBuffer.renderSprite(sprite, rPlacement.getX(), rPlacement.getY());
+            screenBuffer.renderRImage(sprite.getImage(), rPlacement.getX(), rPlacement.getY());
         } else {
             screenBuffer.renderRectangle(rPlacement);
         }               

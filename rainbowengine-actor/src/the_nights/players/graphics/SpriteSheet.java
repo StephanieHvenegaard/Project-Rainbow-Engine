@@ -41,26 +41,31 @@ public class SpriteSheet {
     private Sprite[] sprites;
 
     public SpriteSheet(BufferedImage sheet, int spriteSize) {
-        this.sheet = sheet;
-        this.HEIGHT = sheet.getHeight();
-        this.WIDTH = sheet.getWidth();
+        // TODO: Fix this....change to RImage
         this.SPRITE_SIZE = spriteSize;
-        this.pixels = new int[HEIGHT * WIDTH];
-        this.sprites = new Sprite[(HEIGHT / spriteSize) * (WIDTH / spriteSize)];
-        sheet.getRGB(0, 0, WIDTH, HEIGHT, pixels, 0, 0);
-
-        int spriteID = 0;
-        for (int y = 0; y < HEIGHT; y += spriteSize) {
-            for (int x = 0; x < WIDTH; x += spriteSize) {
-                int[] spritePix = new int[spriteSize * spriteSize];
-                int spriteWidth = spriteSize;
-                int spriteHeight = spriteSize;
-                spritePix = getSpritePixels(x, y, spriteWidth, spriteHeight, spritePix, 0, spriteWidth);
-                Sprite s = new Sprite(spriteSize, spritePix);
-                sprites[spriteID] = s;
-                spriteID++;
-            }
-        }
+        this.WIDTH = 0;
+        this.HEIGHT =0;
+        
+//        this.sheet = sheet;
+//        this.HEIGHT = sheet.getHeight();
+//        this.WIDTH = sheet.getWidth();
+//        
+//        this.pixels = new int[HEIGHT * WIDTH];
+//        this.sprites = new Sprite[(HEIGHT / spriteSize) * (WIDTH / spriteSize)];
+//        sheet.getRGB(0, 0, WIDTH, HEIGHT, pixels, 0, 0);
+//
+//        int spriteID = 0;
+//        for (int y = 0; y < HEIGHT; y += spriteSize) {
+//            for (int x = 0; x < WIDTH; x += spriteSize) {
+//                int[] spritePix = new int[spriteSize * spriteSize];
+//                int spriteWidth = spriteSize;
+//                int spriteHeight = spriteSize;
+//                spritePix = getSpritePixels(x, y, spriteWidth, spriteHeight, spritePix, 0, spriteWidth);
+//                Sprite s = new Sprite(spriteSize, spritePix);
+//                sprites[spriteID] = s;
+//                spriteID++;
+//            }
+//        }
     }
 
     public int[] getPixels() {

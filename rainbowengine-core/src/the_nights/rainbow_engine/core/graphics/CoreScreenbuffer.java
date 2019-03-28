@@ -36,62 +36,68 @@ import the_nights.rainbow_engine.core.interfaces.OBS_ISprite;
  * @author Stephanie
  */
 public class CoreScreenbuffer implements IScreenBuffer {
+
     protected BufferedImage viewImage;
     protected int[] view;
     protected RainbowPalette palette;
-    
+
     public CoreScreenbuffer(int width, int height) {
         viewImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         view = ((DataBufferInt) viewImage.getRaster().getDataBuffer()).getData();
     }
+
     @Override
     public void renderRectangle(Rectangle rec) {
         int[] recPixels = rec.getPixels();
         if (recPixels != null) {
-            //TODO: FIX Later.
-//            renderPixels(recPixels, rec.getX(), rec.getY(), rec.getWidth(), rec.getHeight());
+            for (int y = 0; y < rec.getHeight(); y++) {
+                for (int x = 0; x < rec.getWidth(); x++) {
+                    int pixelID = x + (y * rec.getWidth());
+                    int pixel = palette.getColor(pixelID);
+                    setPixel(pixel, x + rec.getX(), y + rec.getY());
+                }
+            }           
         }
     }
+
     @Override
     public void renderString(Text text) {
+        // TODO: fix to use the color palette.
         Graphics graphics = viewImage.createGraphics();
         graphics.setColor(text.getColor());
         graphics.setFont(new Font(text.getFont(), Font.PLAIN, text.getSize()));
         graphics.drawString(text.getText(), text.getxPosition(), text.getyPosition());
         graphics.dispose();
     }
+
     @Override
     public void clear() {
         for (int i = 0; i < view.length; i++) {
             view[i] = 0;
         }
     }
+
     @Override
     public void renderRImage(RainbowImage image, int x, int y) {
-        
+
 //        renderPixels(sprite.getPixels(), xPosition, yPosition, sprite.getWidth(), sprite.getHeight());
     }
 //    @Override
 //    public void renderPixels(int[] renderPixels, int xPosition, int yPosition, int renderWidth, int renderHeight) {
-//        for (int y = 0; y < renderHeight; y++) {
-//            for (int x = 0; x < renderWidth; x++) {
-//                int pixelID = x + (y * renderWidth);
-//                int pixel = renderPixels[pixelID];
-//                setPixel(pixel, x+xPosition, y+yPosition);
-//            }
-//        }
-//    }
+//
+//    }y
+
     @Override
     public void setPixel(int pixel, int x, int y) {
         if (pixel == RainbowPalette.ALPHA_RGB) {
             return;
         }
-            int pixelID = x + (y * viewImage.getWidth());
-            if (pixelID < view.length) {
-                view[pixelID] = palette.getColor(pixel);
-            }
+        int pixelID = x + (y * viewImage.getWidth());
+        if (pixelID < view.length) {
+            view[pixelID] = palette.getColor(pixel);
+        }
     }
-    
+
     @Override
     public void DrawView(Graphics graphics, int screenWidth, int screenHeight) {
         //System.out.println("W : " + screenWidth + " H " + screenHeight);

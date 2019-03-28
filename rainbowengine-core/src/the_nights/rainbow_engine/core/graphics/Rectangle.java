@@ -45,7 +45,7 @@ public class Rectangle {
         this.pixels = new int[width * height];
         for (int iy = 0; iy < height; iy++) {
             for (int ix = 0; ix < width; ix++) {
-                pixels[ix + (iy * width)] = RainbowPalette.ALPHA_RGB;
+                pixels[ix + (iy * width)] = -1;
             }
         }
     }
@@ -54,22 +54,21 @@ public class Rectangle {
         this(0, 0, 0, 0);
     }
 
-    public void generateGrafics(int color) {
+    public void generateGrafics(int colorID) {
         //pixels = new int[width * height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                pixels[x + y * width] = color;
+                pixels[x + y * width] = colorID;
             }
         }
     }
-
-    //TODO
-    public void generateBorderGrafics(int color) {
+    
+    public void generateBorderGrafics(int colorID) {
         //pixels = new int[width * height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if ((y == 0 || y == height - 1) || (x == 0 || x == width - 1)) {
-                    pixels[x + y * width] = color;
+                    pixels[x + y * width] = colorID;
                 } 
             }
         }

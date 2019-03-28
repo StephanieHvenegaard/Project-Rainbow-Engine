@@ -130,7 +130,7 @@ public class Labyrinth{ // implements IRender{
                         index = 15;
                         break;
                 }
-                isb.renderSprite(spritesheet.getSprite(index), x * 16, y * 16);
+                isb.renderRImage(spritesheet.getSprite(index).getImage(), x * 16, y * 16);
             }
         }
     }
