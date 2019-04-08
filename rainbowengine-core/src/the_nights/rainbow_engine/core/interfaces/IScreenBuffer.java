@@ -25,20 +25,21 @@ package the_nights.rainbow_engine.core.interfaces;
 
 import java.awt.Graphics;
 import the_nights.rainbow_engine.core.graphics.RainbowImage;
-import the_nights.rainbow_engine.core.graphics.Rectangle;
+import the_nights.rainbow_engine.core.graphics.RainbowRectangle;
 import the_nights.rainbow_engine.core.graphics.Text;
-import the_nights.rainbow_engine.core.graphics.palettes.RainbowPalette;
 /**
  *
  * @author Stephanie
  */
 public interface IScreenBuffer {
-
+    public void setWidth(int w);
+    public void setHeight(int h);
+            
     public void renderRImage(RainbowImage image, int x, int y);
     
     //public void renderSprite(OBS_ISprite sprite, int xPosition, int yPosition);
     
-    public void renderRectangle(Rectangle rec);
+    public void renderRectangle(RainbowRectangle rec);
     
     public void renderString(Text text);
 
@@ -50,11 +51,11 @@ public interface IScreenBuffer {
 
     public void clear();  
     
-    public RainbowPalette getPallete();
-    
-    public void setPallete(RainbowPalette pallete);
+//    public RainbowPalette getPallete();
+//    
+//    public void setPallete(RainbowPalette pallete);
 
-    //public void renderRectangle(Rectangle rec, int xZoom, int yZoom);
+    //public void renderRectangle(RainbowRectangle rec, int xZoom, int yZoom);
    
     //public void renderImage(BufferedImage image, int xPosition, int yPosition, int xZoom, int yZoom);
 
@@ -76,7 +77,7 @@ public interface IScreenBuffer {
 
     //public void DrawView(Graphics graphics);
     
-    //public Rectangle getCamara();
+    //public RainbowRectangle getCamara();
 
     //public BufferedImage getView();
 

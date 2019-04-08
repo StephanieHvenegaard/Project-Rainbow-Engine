@@ -26,11 +26,6 @@ package the_nights.rainbow_engine.core.settings;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import the_nights.rainbow_engine.core.FileHandler;
-import the_nights.rainbow_engine.core.graphics.palettes.RainbowPalette;
-import the_nights.rainbow_engine.core.logging.RELogger;
 import the_nigths.rson.RSONObject;
 
 /**
@@ -46,7 +41,7 @@ public class EngineSettings {
     public boolean fullscreen = false;
     public boolean borderless = false;
     public ScreenRessolution resolution = ScreenRessolution.CGA;    
-    public RainbowPalette palette = new RainbowPalette();
+//    public RainbowPalette palette = new RainbowPalette();
 
     public EngineSettings() throws IOException {
         try {
@@ -57,7 +52,7 @@ public class EngineSettings {
             savefile.put("fullscreen", "false");
             savefile.put("borderless", "false");
             savefile.put("resolution", ScreenRessolution.CGA.index +"");
-            savefile.put("palette",palette.getName());            
+//            savefile.put("palette",palette.getName());            
                 savefile.save(path);
         }
 
@@ -66,7 +61,7 @@ public class EngineSettings {
         this.borderless = Boolean.parseBoolean(savefile.get("fullscreen"));
         this.borderless = Boolean.parseBoolean(savefile.get("borderless"));
         this.resolution = ScreenRessolution.fromId(Integer.parseInt(savefile.get("resolution")));
-        this.palette = RainbowPalette.LoadPallete("palette/"+savefile.get("palette")+RainbowPalette.EXTENSION);
+//        this.palette = RainbowPalette.LoadPallete("palette/"+savefile.get("palette")+RainbowPalette.EXTENSION);
     }
 
     public String get(String key) {

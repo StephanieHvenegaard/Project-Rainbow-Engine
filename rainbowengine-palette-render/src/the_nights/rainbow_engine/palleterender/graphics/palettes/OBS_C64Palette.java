@@ -1,4 +1,4 @@
-package the_nights.rainbow_engine.core.graphics.palettes;
+package the_nights.rainbow_engine.palleterender.graphics.palettes;
 
 ///*
 // * To change this license header, choose License Headers in Project Properties.

@@ -1,4 +1,4 @@
-package the_nights.rainbow_engine.core.graphics.palettes;
+package the_nights.rainbow_engine.palleterender.graphics.palettes;
 
 ///*
 // * To change this license header, choose License Headers in Project Properties.
@@ -11,11 +11,7 @@ package the_nights.rainbow_engine.core.graphics.palettes;
 // *
 // * @author Stephanie
 // */
-//public enum OBS_ColorMode {
-//    MONOCROME,
-//    EGA,
-//    COLOR_16,    
-//    COLOR_32,
-//    COLOR_64,    
-//    COLOR_256
+//public interface OBS_IColorPalette {
+//    public int getPalleteSize();
+//    public int getColor(int id);
 //}

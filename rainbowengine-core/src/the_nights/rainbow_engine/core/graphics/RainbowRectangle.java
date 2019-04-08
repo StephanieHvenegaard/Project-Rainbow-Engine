@@ -23,13 +23,11 @@
  */
 package the_nights.rainbow_engine.core.graphics;
 
-import the_nights.rainbow_engine.core.graphics.palettes.RainbowPalette;
-
 /**
  *
  * @author Stephanie
  */
-public class Rectangle {
+public class RainbowRectangle {
 
     private int x;
     private int y;
@@ -37,7 +35,7 @@ public class Rectangle {
     private int height;
     private int[] pixels;
 
-    public Rectangle(int x, int y, int width, int height) {
+    public RainbowRectangle(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -50,7 +48,7 @@ public class Rectangle {
         }
     }
 
-    public Rectangle() {
+    public RainbowRectangle() {
         this(0, 0, 0, 0);
     }
 
@@ -115,7 +113,7 @@ public class Rectangle {
         }
     }
 
-    public boolean Overlap(Rectangle other) {
+    public boolean Overlap(RainbowRectangle other) {
         if (other.x >= this.x && other.x <= (this.x + this.width)
         && (other.y >= this.y && other.y <= (this.y + this.height))) {
             return true;

@@ -36,9 +36,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import the_nights.rainbow_engine.core.graphics.CoreScreenbuffer;
 import the_nights.rainbow_engine.core.interfaces.IScreenBuffer;
-import the_nights.rainbow_engine.core.graphics.Rectangle;
+import the_nights.rainbow_engine.core.graphics.RainbowRectangle;
 import the_nights.rainbow_engine.core.graphics.SplashScreen;
 import the_nights.rainbow_engine.core.graphics.Text;
 import the_nights.rainbow_engine.core.listner.KeyboardListner;
@@ -77,7 +76,7 @@ public class Engine extends JFrame implements Runnable {
     private IScreenBuffer screenBuffer;
     private KeyboardListner keyboardListner = new KeyboardListner(this);
     private MouseEventListner mouseEventListner = new MouseEventListner(this);
-    private Rectangle debugRec;
+    private RainbowRectangle debugRec;
    
     public Engine() {
         
@@ -97,12 +96,12 @@ public class Engine extends JFrame implements Runnable {
         RELogger.writelog("Borderless              : " + engineSettings.borderless, this);
         RELogger.writelog("fullscreen              : " + engineSettings.fullscreen, this);
         RELogger.writelog("Resolution              : " + engineSettings.resolution.getName(), this);
-        RELogger.writelog("Palette                 : " + engineSettings.palette.getName(), this);
+//        RELogger.writelog("Palette                 : " + engineSettings.palette.getName(), this);
         
         
         
         //debug rectangle.
-        debugRec = new Rectangle(0, 0, 140, 50);
+        debugRec = new RainbowRectangle(0, 0, 140, 50);
         debugRec.generateGrafics(0);
         //Make our program shutdown when we exit out.
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -298,11 +297,11 @@ public class Engine extends JFrame implements Runnable {
         //Put our frame in the center of the screen.
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.screenBuffer = new CoreScreenbuffer(screenWidth, screenHeight);
-        this.screenBuffer.setPallete(engineSettings.palette);
+//        this.screenBuffer = new CoreScreenbuffer(screenWidth, screenHeight);
+//        this.screenBuffer.setPallete(engineSettings.palette);
     }
 
-    public void setScreenBuffer(CoreScreenbuffer screenBuffer) {
+    public void setScreenBuffer(IScreenBuffer screenBuffer) {
         this.screenBuffer = screenBuffer;
     }
 

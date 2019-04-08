@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package the_nights.rainbow_engine.core.graphics.palettes;
+package the_nights.rainbow_engine.palleterender.graphics.palettes;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -34,20 +34,27 @@ import the_nights.rainbow_engine.core.logging.RELogger;
  * @author Stephanie
  */
 public class RainbowPalette {
-    public static int ALPHA_RGB = 0xFF00DD;  
+
+    public static int ALPHA_RGB = 0xFF00DD;
     public static String EXTENSION = ".rp";
-    protected int[] colors;   
-    private int size=-1;
+    protected int[] colors;
+    private int size = -1;
     private String name = "c64";
+
     public int getColor(int id) {
-        if(id == -1)
+        if (id >= size) {
+            System.out.println("Can't fetch that id : " + id + " are you still using old colors?");
             return ALPHA_RGB;
+        }
+        if (id == -1) {
+            return ALPHA_RGB;
+        }
         return colors[id];
-    }    
+    }
 
     public int getPalleteSize() {
         return colors.length;
-    }    
+    }
 
     public String getName() {
         return name;
@@ -56,16 +63,14 @@ public class RainbowPalette {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
-    public static RainbowPalette LoadPallete(String Filename) throws FileNotFoundException
-    {
+
+    public static RainbowPalette LoadPallete(String Filename) throws FileNotFoundException {
         RainbowPalette pall = new RainbowPalette();
         int linecounter = 0;
-        int index =0;
-       File file= FileHandler.loadFile(Filename);
+        int index = 0;
+        File file = FileHandler.loadFile(Filename);
         Scanner input = new Scanner(file);
-        RELogger.writelog("Loading palette from : "+file.getAbsolutePath(), pall);
+        RELogger.writelog("Loading palette from : " + file.getAbsolutePath(), pall);
         while (input.hasNext()) {
             String line = input.nextLine();
             linecounter++;
@@ -83,28 +88,24 @@ public class RainbowPalette {
                 if (sp[0].isEmpty()) {
                     throw new IllegalArgumentException("Missing element name at line: " + linecounter);
                 }
-                if(sp[0].equalsIgnoreCase("size"))
-                {
+                if (sp[0].equalsIgnoreCase("size")) {
                     int s = Integer.parseInt(sp[1]);
                     pall.size = s;
-                    pall.colors = new int[s];                            
+                    pall.colors = new int[s];
                 }
-                if(sp[0].equalsIgnoreCase("color"))
-                {
-                    if(pall.size !=-1)
-                    {                  
+                if (sp[0].equalsIgnoreCase("color")) {
+                    if (pall.size != -1) {
                         String hex = sp[1].trim();
-                        pall.colors[index]= Integer.parseInt(hex,16);
+                        pall.colors[index] = Integer.parseInt(hex, 16);
                         index++;
                     }
                 }
-                if(index == pall.size)
-                {
+                if (index == pall.size) {
                     break;
                 }
             }
         }
         return pall;
     }
-    
+
 }

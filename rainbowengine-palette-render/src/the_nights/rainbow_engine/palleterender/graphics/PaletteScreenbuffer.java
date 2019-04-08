@@ -21,33 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package the_nights.rainbow_engine.core.graphics;
+package the_nights.rainbow_engine.palleterender.graphics;
 
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import the_nights.rainbow_engine.core.graphics.palettes.RainbowPalette;
+import the_nights.rainbow_engine.core.graphics.RainbowImage;
+import the_nights.rainbow_engine.core.graphics.RainbowRectangle;
+import the_nights.rainbow_engine.core.graphics.Text;
+import the_nights.rainbow_engine.palleterender.graphics.palettes.RainbowPalette;
 import the_nights.rainbow_engine.core.interfaces.IScreenBuffer;
-import the_nights.rainbow_engine.core.interfaces.OBS_ISprite;
 
 /**
  *
  * @author Stephanie
  */
-public class CoreScreenbuffer implements IScreenBuffer {
+public final class PaletteScreenbuffer implements IScreenBuffer {
 
-    protected BufferedImage viewImage;
-    protected int[] view;
-    protected RainbowPalette palette;
+    private int width = 0;
+    private int height = 0;
+    private BufferedImage viewImage;
+    private int[] view;
+    private RainbowPalette palette;
 
-    public CoreScreenbuffer(int width, int height) {
-        viewImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        view = ((DataBufferInt) viewImage.getRaster().getDataBuffer()).getData();
+    public PaletteScreenbuffer(int width, int height) {
+
     }
 
     @Override
-    public void renderRectangle(Rectangle rec) {
+    public void renderRectangle(RainbowRectangle rec) {
         int[] recPixels = rec.getPixels();
         if (recPixels != null) {
             for (int y = 0; y < rec.getHeight(); y++) {
@@ -56,7 +59,7 @@ public class CoreScreenbuffer implements IScreenBuffer {
                     int pixel = palette.getColor(pixelID);
                     setPixel(pixel, x + rec.getX(), y + rec.getY());
                 }
-            }           
+            }
         }
     }
 
@@ -135,14 +138,26 @@ public class CoreScreenbuffer implements IScreenBuffer {
         graphics.drawImage(screen, 0, 0, screenWidth, screenHeight, null);
     }
 
-    @Override
     public RainbowPalette getPallete() {
         return palette;
     }
 
-    @Override
     public void setPallete(RainbowPalette palette) {
         this.palette = palette;
+    }
+
+    @Override
+    public void setWidth(int w) {
+        this.width = w;
+        viewImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        view = ((DataBufferInt) viewImage.getRaster().getDataBuffer()).getData();
+    }
+
+    @Override
+    public void setHeight(int h) {
+        this.height = h;
+        viewImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        view = ((DataBufferInt) viewImage.getRaster().getDataBuffer()).getData();
     }
 }
 
@@ -184,12 +199,12 @@ public class CoreScreenbuffer implements IScreenBuffer {
 //    }
 //
 //    @Override
-//    public void renderRectangle(Rectangle rec, boolean renderBackground) {
+//    public void renderRectangle(RainbowRectangle rec, boolean renderBackground) {
 //        renderRectangle(rec, 1, 1, renderBackground);
 //    }
 //
 //    @Override
-//    public void renderRectangle(Rectangle rec, int xZoom, int yZoom, boolean renderBackground) {
+//    public void renderRectangle(RainbowRectangle rec, int xZoom, int yZoom, boolean renderBackground) {
 //        int[] recPixels = rec.getPixels();
 //        if (recPixels != null) {
 //            if (renderBackground) {
@@ -341,7 +356,7 @@ public class CoreScreenbuffer implements IScreenBuffer {
 //    }
 //
 //    @Override
-//    public Rectangle getCamara() {
+//    public RainbowRectangle getCamara() {
 //        return camera;
 //    }
 //

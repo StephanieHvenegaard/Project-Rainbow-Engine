@@ -46,18 +46,25 @@ public class Text {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
     }
+
     public Text(String text, String Font, int size, int xPosition, int yPosition) {
-        this(text, size, Font, Color.WHITE, xPosition, yPosition);  
+        this(text, size, Font, Color.WHITE, xPosition, yPosition);
     }
-    public Text(String text,int size,  int xPosition, int yPosition) {
+
+    public Text(String text, int size, int xPosition, int yPosition) {
         this(text, size, "Consolas", Color.WHITE, xPosition, yPosition);
     }
 
-    public Text(String text, Color color,int xPosition, int yPosition) {
+    public Text(String text, Color color, int xPosition, int yPosition) {
         this(text, 12, "Consolas", color, xPosition, yPosition);
     }
+
     public Text(String text, int xPosition, int yPosition) {
         this(text, 12, "Consolas", Color.WHITE, xPosition, yPosition);
+    }
+
+    public Text() {
+        this("", 12, "Consolas", Color.WHITE, -1, -1);
     }
 
     public String getText() {
@@ -107,6 +114,5 @@ public class Text {
     public void setColor(Color color) {
         this.color = color;
     }
-    
 
 }
