@@ -68,6 +68,8 @@ public class RainbowRectangle {
                 if ((y == 0 || y == height - 1) || (x == 0 || x == width - 1)) {
                     pixels[x + y * width] = colorID;
                 } 
+                else 
+                    pixels[x + y * width] = -1;
             }
         }
     }

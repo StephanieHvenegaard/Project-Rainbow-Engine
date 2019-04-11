@@ -58,7 +58,6 @@ class ImageCanvas extends Canvas {
     public ImageCanvas() {
         try {
             img = ImageIO.read(getClass().getResourceAsStream("/splash/splash_bg.png"));
-            //img = ImageIO.read(new File("art/splash/splash_bg.png"));
         } catch (IOException ex) {
             RELogger.writelog(ex.getMessage(), this);
         }

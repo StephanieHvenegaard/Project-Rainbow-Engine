@@ -50,6 +50,8 @@ public final class PaletteScreenbuffer implements IScreenBuffer {
 
     public PaletteScreenbuffer() {
         this.palette = new C64Palette();
+        this.viewImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        this.view = ((DataBufferInt) viewImage.getRaster().getDataBuffer()).getData();
     }
 
     @Override
@@ -58,9 +60,13 @@ public final class PaletteScreenbuffer implements IScreenBuffer {
         if (recPixels != null) {
             for (int y = 0; y < rec.getHeight(); y++) {
                 for (int x = 0; x < rec.getWidth(); x++) {
-                    int pixelID = x + (y * rec.getWidth());
-                    int pixel = palette.getColor(pixelID);
-                    setPixel(pixel, x + rec.getX(), y + rec.getY());
+                    int posID = x + (y * rec.getWidth());
+                    if (posID < recPixels.length) {
+                        int pixelColerID = recPixels[posID];
+                        setPixelColor(pixelColerID, x + rec.getX(), y + rec.getY());
+                    } else {
+                        System.out.println("ups");
+                    }
                 }
             }
         }
@@ -87,19 +93,24 @@ public final class PaletteScreenbuffer implements IScreenBuffer {
 
     @Override
     public void renderRImage(RainbowImage image, int x, int y) {
+        // TODO : add support for an R-image.
 
 //        renderPixels(sprite.getPixels(), xPosition, yPosition, sprite.getWidth(), sprite.getHeight());
     }
 
     @Override
-    public void setPixel(int pixel, int x, int y) {
-        if (pixel == RainbowPalette.ALPHA_RGB) {
-            return;
+    public void setPixelColor(int pixelColerID, int x, int y) {
+        int posID = x + (y * viewImage.getWidth());
+        if (posID < view.length && posID >=0) {
+            if (pixelColerID < palette.getPalleteSize()) {
+                view[posID] = palette.getColor(pixelColerID);
+            } else {
+                System.out.println("ups");
+            }
+        } else {
+            System.out.println("ups - pixel bigger then canvas");
         }
-        int pixelID = x + (y * viewImage.getWidth());
-        if (pixelID < view.length) {
-            view[pixelID] = palette.getColor(pixel);
-        }
+
     }
 
     @Override
@@ -117,7 +128,6 @@ public final class PaletteScreenbuffer implements IScreenBuffer {
             zoomFactor = zoomY;
         }
 
-        //System.out.println("Zoomfactor " +zoomFactor);  
         int xPosition = (screenWidth - (viewImage.getWidth() * zoomFactor)) / 2;
         int yPosition = (screenHeight - (viewImage.getHeight() * zoomFactor)) / 2;
 
@@ -255,7 +265,7 @@ public final class PaletteScreenbuffer implements IScreenBuffer {
 //                        int pixel = renderPixels[pixelID];
 //                        int xi = ((x * xZoom) + xPosition + xz);
 //                        int yi = ((y * yZoom) + yPosition + yz);
-//                        setPixel(pixel, xi, yi);
+//                        setPixelColor(pixel, xi, yi);
 //                    }
 //                }
 //            }
@@ -263,7 +273,7 @@ public final class PaletteScreenbuffer implements IScreenBuffer {
 //    }
 //
 //    @Override
-//    public void setPixel(int pixel, int x, int y) {
+//    public void setPixelColor(int pixel, int x, int y) {
 //        if (renderAlpha) {
 //            if (pixel == BasePalette.ALPHA_RGB) {
 //                return;

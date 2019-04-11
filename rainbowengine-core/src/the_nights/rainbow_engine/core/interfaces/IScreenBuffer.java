@@ -45,7 +45,7 @@ public interface IScreenBuffer {
 
     //public void renderPixels(int[] renderPixels, int xPosition, int yPosition, int renderWidth, int renderHeight);
 
-    public void setPixel(int pixel, int x, int y);   
+    public void setPixelColor(int pixel, int x, int y);   
 
     public void DrawView(Graphics graphics, int screenWidth, int screenHeight);
 

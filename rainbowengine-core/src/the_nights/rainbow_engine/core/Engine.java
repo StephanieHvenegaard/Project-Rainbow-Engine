@@ -32,19 +32,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import the_nights.rainbow_engine.core.interfaces.IScreenBuffer;
 import the_nights.rainbow_engine.core.graphics.RainbowRectangle;
+import the_nights.rainbow_engine.core.graphics.RainbowText;
 import the_nights.rainbow_engine.core.graphics.SplashScreen;
 import the_nights.rainbow_engine.core.listner.KeyboardListner;
 import the_nights.rainbow_engine.core.listner.MouseEventListner;
 import the_nights.rainbow_engine.core.logging.RELogger;
 import the_nights.rainbow_engine.core.settings.EngineSettings;
 
-public class Engine extends JFrame implements Runnable {
+public class Engine implements Runnable {
 
     //--------------------------------------------------------------------------
     //Static 
@@ -74,32 +73,15 @@ public class Engine extends JFrame implements Runnable {
     private KeyboardListner keyboardListner = new KeyboardListner(this);
     private MouseEventListner mouseEventListner = new MouseEventListner(this);
     private RainbowRectangle debugRec;
-
+    private JFrame frame;
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------
     public Engine() {
-
-        try {
-            Image img = ImageIO.read(getClass().getResourceAsStream("/icon.png"));
-            this.setIconImage(img);
-            engineSettings = new EngineSettings();
-        } catch (IOException ex) {
-            RELogger.writelog(ex.getMessage(), this);
-        }
-        RELogger.writelog("Starting engine version : " + ENGINE_VERSION, this);
-        RELogger.writelog("Showing splashscreen", this);
-        showSplashScreen();
-
         //debug rectangle.
-//        debugRec = new RainbowRectangle(0, 0, 140, 50);
-//        debugRec.generateGrafics(0);
-        //Make our program shutdown when we exit out.
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //Add our graphics compoent      
-        this.add(canvas);
+        debugRec = new RainbowRectangle(0, 0, 140, 50);
+        debugRec.generateGrafics(0);
     }
-
     //--------------------------------------------------------------------------
     // Engine Loop
     //--------------------------------------------------------------------------
@@ -128,20 +110,36 @@ public class Engine extends JFrame implements Runnable {
             fx_Counter = 0;
         }
     }
-
     public void render() {
         if (screenBuffer != null) {
             if (this.game != null) {
+                screenBuffer.clear();
                 BufferStrategy bufferStrategy = canvas.getBufferStrategy();
                 Graphics graphics = bufferStrategy.getDrawGraphics();
-                super.paint(graphics);
+                frame.paint(graphics);
                 game.render(screenBuffer);
                 if (_showDebugInfo) {
                     screenBuffer.renderRectangle(debugRec);
-//                    screenBuffer.renderString(new Text(String.format("fps  : %7d", fps), DEFAULT_FONT, 12, 5, 11));
-//                    screenBuffer.renderString(new Text(String.format("upd  : %7d ns", updateTime), DEFAULT_FONT, 12, 5, 11 * 2));
-//                    screenBuffer.renderString(new Text(String.format("rndr : %7d ns", renderTime), DEFAULT_FONT, 12, 5, 11 * 3));
-//                    screenBuffer.renderString(new Text(String.format("gobj : %7d's", game.countGameObjects()), DEFAULT_FONT, 12, 5, 11 * 4));
+                    screenBuffer.renderString(new RainbowText()
+                            .setText(String.format("fps  : %7d", fps)).setFont(DEFAULT_FONT)
+                            .setColor(1)
+                            .setxPosition(5)
+                            .setyPosition(11));                    
+                    screenBuffer.renderString(new RainbowText()
+                            .setText(String.format("upd  : %7d ns", updateTime))
+                            .setColor(1)
+                            .setxPosition(5)
+                            .setyPosition(11*2));
+                    screenBuffer.renderString(new RainbowText()
+                            .setText(String.format("rndr : %7d ns", renderTime))
+                            .setColor(1)
+                            .setxPosition(5)
+                            .setyPosition(11*3));
+                    screenBuffer.renderString(new RainbowText()
+                            .setText(String.format("gobj : %7d's", game.countGameObjects()))
+                            .setColor(1)
+                            .setxPosition(5)
+                            .setyPosition(11*4));                            
                 }
                 screenBuffer.DrawView(graphics, canvas.getWidth(), canvas.getHeight());
                 //Clean up;
@@ -202,27 +200,43 @@ public class Engine extends JFrame implements Runnable {
     // methods
     //--------------------------------------------------------------------------
     public void startEngine() {
-        RELogger.writelog("Starting engine", this);
-        this.loadSettings();
-        game.loadAssets();
-        //get focus.
-        canvas.requestFocus();
-        Thread engineT = new Thread(this);
-        engineT.start();
+        if (game != null) {
+            frame = new JFrame("Rainbow Engine - " + game.getName() + " " + game.getVersionNumber());
+            try {
+                Image img = ImageIO.read(getClass().getResourceAsStream("/icon.png"));
+                this.frame.setIconImage(img);
+                engineSettings = new EngineSettings();
+            } catch (IOException ex) {
+                RELogger.writelog(ex.getMessage(), this);
+            }
+            RELogger.writelog("Starting engine version : " + ENGINE_VERSION, this);
+            //RELogger.writelog("Showing splashscreen", this);
+            //showSplashScreen();
+            this.loadSettings();
+            game.loadAssets();
+            //get focus.
+            canvas.requestFocus();
+            Thread engineT = new Thread(this);
+            engineT.start();
+        }
     }
 
-    private void loadSettings() {
+    private void loadSettings() {        
+        //Make our program shutdown when we exit out.
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //Add our graphics compoent      
+        this.frame.add(canvas);
         RELogger.writelog("Loading engine settings", this);
         RELogger.writelog("Borderless              : " + engineSettings.borderless, this);
-        this.setUndecorated(engineSettings.borderless);
+        this.frame.setUndecorated(engineSettings.borderless);
         RELogger.writelog("fullscreen              : " + engineSettings.fullscreen, this);
         if (engineSettings.fullscreen) {
-            this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+            this.frame.setExtendedState(this.frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         }
         RELogger.writelog("Resolution              : " + engineSettings.resolution.getName(), this);
         this.setRenderSize(engineSettings.resolution.width, engineSettings.resolution.heigth);
         //Make our frame visible.
-        this.setVisible(true);
+        this.frame.setVisible(true);
         //Create our object for buffer strategy.    
         this.canvas.createBufferStrategy(3);
         // add Listners
@@ -233,15 +247,15 @@ public class Engine extends JFrame implements Runnable {
     }
 
     public void shutdownEngine() {
-        dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
     }
 
     private void showSplashScreen() {
         SplashScreen ss = new SplashScreen();
         try {
-            Thread.sleep(5000);
+            Thread.sleep(1200);
         } catch (InterruptedException ex) {
-            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+            RELogger.writelog(ex.getMessage(), ss);
         }
         ss.dispatchEvent(new WindowEvent(ss, WindowEvent.WINDOW_CLOSING));
     }
@@ -286,27 +300,28 @@ public class Engine extends JFrame implements Runnable {
     //--------------------------------------------------------------------------
     public void setRenderSize(int screenWidth, int screenHeight) {
         // first set the screen size to se if there is any borders.
-        this.setBounds(0, 0, screenWidth, screenHeight);
-        this.setVisible(true);
+        this.frame.setBounds(0, 0, screenWidth, screenHeight);
+        this.frame.setVisible(true);
         // calculates offset course by the winframe overlay and canvas
         int offsetW = screenWidth - this.canvas.getWidth();
         int offsetH = screenHeight - this.canvas.getHeight();
         // set the screen size to the new size with offsets.
 
-        this.setBounds(0, 0, screenWidth + offsetW, screenHeight + offsetH);
-        this.setMinimumSize(new Dimension(screenWidth + offsetW, screenHeight + offsetH));
+        this.frame.setBounds(0, 0, screenWidth + offsetW, screenHeight + offsetH);
+        this.frame.setMinimumSize(new Dimension(screenWidth + offsetW, screenHeight + offsetH));
         //Put our frame in the center of the screen.
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
-//        this.screenBuffer.setHeight(screenHeight);
-//        this.screenBuffer.setWidth(screenWidth);
+        this.frame.setLocationRelativeTo(null);
+        this.frame.setVisible(true);
+
+        this.screenBuffer.setHeight(screenHeight);
+        this.screenBuffer.setWidth(screenWidth);
 //        this.screenBuffer = new CoreScreenbuffer(screenWidth, screenHeight);
 //        this.screenBuffer.setPallete(engineSettings.palette);
     }
 
     public void setScreenBuffer(IScreenBuffer screenBuffer) {
         this.screenBuffer = screenBuffer;
-        this.setRenderSize(engineSettings.resolution.width, engineSettings.resolution.heigth);
+        //this.setRenderSize(engineSettings.resolution.width, engineSettings.resolution.heigth);
     }
 
     public void setDesiredSpeed(int desiredSpeed) {
@@ -315,7 +330,6 @@ public class Engine extends JFrame implements Runnable {
 
     public void setGame(IGame game) {
         RELogger.writelog("setting game : " + game.getName() + " " + game.getVersionNumber(), this);
-        this.setTitle("Rainbow Engine - " + game.getName() + " " + game.getVersionNumber());
         this.game = game;
     }
 }
