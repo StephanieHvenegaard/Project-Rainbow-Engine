@@ -29,42 +29,22 @@ import java.awt.Color;
  *
  * @author Stephanie
  */
-public class Text {
+public class RainbowText {
 
     private String text;
     private int size;
     private String Font;
     private int xPosition;
     private int yPosition;
-    private Color color;                    // TO-DO, Change to pallette color.
+    private int color;                    // TO-DO, Change to pallette color.
 
-    public Text(String text, int size, String Font, Color color, int xPosition, int yPosition) {
-        this.text = text;
-        this.size = size;
-        this.Font = Font;
-        this.color = color;
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
-    }
-
-    public Text(String text, String Font, int size, int xPosition, int yPosition) {
-        this(text, size, Font, Color.WHITE, xPosition, yPosition);
-    }
-
-    public Text(String text, int size, int xPosition, int yPosition) {
-        this(text, size, "Consolas", Color.WHITE, xPosition, yPosition);
-    }
-
-    public Text(String text, Color color, int xPosition, int yPosition) {
-        this(text, 12, "Consolas", color, xPosition, yPosition);
-    }
-
-    public Text(String text, int xPosition, int yPosition) {
-        this(text, 12, "Consolas", Color.WHITE, xPosition, yPosition);
-    }
-
-    public Text() {
-        this("", 12, "Consolas", Color.WHITE, -1, -1);
+    public RainbowText() {
+        this.text = "";
+        this.size = 12;
+        this.Font = "Consolas";
+        this.color = -1;
+        this.xPosition = 0;
+        this.yPosition = 0;
     }
 
     public String getText() {
@@ -87,32 +67,38 @@ public class Text {
         return yPosition;
     }
 
-    public Color getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setText(String text) {
+    public RainbowText setText(String text) {
         this.text = text;
+        return this;
     }
 
-    public void setSize(int size) {
+    public RainbowText setSize(int size) {
         this.size = size;
+        return this;
     }
 
-    public void setFont(String Font) {
+    public RainbowText setFont(String Font) {
         this.Font = Font;
+        return this;
     }
 
-    public void setxPosition(int xPosition) {
+    public RainbowText setxPosition(int xPosition) {
         this.xPosition = xPosition;
+        return this;
     }
 
-    public void setyPosition(int yPosition) {
+    public RainbowText setyPosition(int yPosition) {
         this.yPosition = yPosition;
+        return this;
     }
 
-    public void setColor(Color color) {
+    public RainbowText setColor(int color) {
         this.color = color;
+        return this;
     }
 
 }

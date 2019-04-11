@@ -23,15 +23,18 @@
  */
 package the_nights.rainbow_engine.palleterender.graphics;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+
 import the_nights.rainbow_engine.core.graphics.RainbowImage;
 import the_nights.rainbow_engine.core.graphics.RainbowRectangle;
-import the_nights.rainbow_engine.core.graphics.Text;
-import the_nights.rainbow_engine.palleterender.graphics.palettes.RainbowPalette;
+import the_nights.rainbow_engine.core.graphics.RainbowText;
+import the_nights.rainbow_engine.core.graphics.RainbowPalette;
 import the_nights.rainbow_engine.core.interfaces.IScreenBuffer;
+import the_nights.rainbow_engine.palleterender.graphics.palettes.C64Palette;
 
 /**
  *
@@ -39,14 +42,14 @@ import the_nights.rainbow_engine.core.interfaces.IScreenBuffer;
  */
 public final class PaletteScreenbuffer implements IScreenBuffer {
 
-    private int width = 0;
-    private int height = 0;
+    private int width = 1;
+    private int height = 1;
     private BufferedImage viewImage;
     private int[] view;
     private RainbowPalette palette;
 
-    public PaletteScreenbuffer(int width, int height) {
-
+    public PaletteScreenbuffer() {
+        this.palette = new C64Palette();
     }
 
     @Override
@@ -64,13 +67,15 @@ public final class PaletteScreenbuffer implements IScreenBuffer {
     }
 
     @Override
-    public void renderString(Text text) {
-        // TODO: fix to use the color palette.
-        Graphics graphics = viewImage.createGraphics();
-        graphics.setColor(text.getColor());
-        graphics.setFont(new Font(text.getFont(), Font.PLAIN, text.getSize()));
-        graphics.drawString(text.getText(), text.getxPosition(), text.getyPosition());
-        graphics.dispose();
+    public void renderString(RainbowText text) {
+        if (viewImage != null) {
+            Graphics graphics = viewImage.createGraphics();
+            Color c = new Color(palette.getColor(text.getColor()));
+            graphics.setColor(c);
+            graphics.setFont(new Font(text.getFont(), Font.PLAIN, text.getSize()));
+            graphics.drawString(text.getText(), text.getxPosition(), text.getyPosition());
+            graphics.dispose();
+        }
     }
 
     @Override
@@ -85,10 +90,6 @@ public final class PaletteScreenbuffer implements IScreenBuffer {
 
 //        renderPixels(sprite.getPixels(), xPosition, yPosition, sprite.getWidth(), sprite.getHeight());
     }
-//    @Override
-//    public void renderPixels(int[] renderPixels, int xPosition, int yPosition, int renderWidth, int renderHeight) {
-//
-//    }y
 
     @Override
     public void setPixel(int pixel, int x, int y) {
@@ -160,6 +161,10 @@ public final class PaletteScreenbuffer implements IScreenBuffer {
         view = ((DataBufferInt) viewImage.getRaster().getDataBuffer()).getData();
     }
 }
+//    @Override
+//    public void renderPixels(int[] renderPixels, int xPosition, int yPosition, int renderWidth, int renderHeight) {
+//
+//    }y
 
 //    
 //    @Override

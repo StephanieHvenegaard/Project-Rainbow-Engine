@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package the_nights.rainbow_engine.palleterender.graphics.palettes;
+package the_nights.rainbow_engine.core.graphics;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -34,7 +34,8 @@ import the_nights.rainbow_engine.core.logging.RELogger;
  * @author Stephanie
  */
 public class RainbowPalette {
-
+    public static int ID_WHITE = 1;
+    public static int ID_BLACK = 0;
     public static int ALPHA_RGB = 0xFF00DD;
     public static String EXTENSION = ".rp";
     protected int[] colors;
@@ -42,10 +43,10 @@ public class RainbowPalette {
     private String name = "c64";
 
     public int getColor(int id) {
-        if (id >= size) {
-            System.out.println("Can't fetch that id : " + id + " are you still using old colors?");
-            return ALPHA_RGB;
-        }
+        //if (id >= size) {
+          //  System.out.println("Can't fetch that id : " + id + " are you still using old colors?");
+          //  return ALPHA_RGB;
+        ///}
         if (id == -1) {
             return ALPHA_RGB;
         }

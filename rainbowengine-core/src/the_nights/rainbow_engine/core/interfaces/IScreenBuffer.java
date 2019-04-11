@@ -26,7 +26,7 @@ package the_nights.rainbow_engine.core.interfaces;
 import java.awt.Graphics;
 import the_nights.rainbow_engine.core.graphics.RainbowImage;
 import the_nights.rainbow_engine.core.graphics.RainbowRectangle;
-import the_nights.rainbow_engine.core.graphics.Text;
+import the_nights.rainbow_engine.core.graphics.RainbowText;
 /**
  *
  * @author Stephanie
@@ -41,7 +41,7 @@ public interface IScreenBuffer {
     
     public void renderRectangle(RainbowRectangle rec);
     
-    public void renderString(Text text);
+    public void renderString(RainbowText text);
 
     //public void renderPixels(int[] renderPixels, int xPosition, int yPosition, int renderWidth, int renderHeight);
 
