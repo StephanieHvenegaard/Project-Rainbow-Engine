@@ -84,9 +84,8 @@ public class Engine extends JFrame implements Runnable {
             Image img = ImageIO.read(getClass().getResourceAsStream("/icon.png"));
             this.setIconImage(img);
             engineSettings = new EngineSettings();
-
         } catch (IOException ex) {
-            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+            RELogger.writelog(ex.getMessage(), this);
         }
         RELogger.writelog("Starting engine version : " + ENGINE_VERSION, this);
         RELogger.writelog("Showing splashscreen", this);
@@ -98,7 +97,7 @@ public class Engine extends JFrame implements Runnable {
         //Make our program shutdown when we exit out.
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //Add our graphics compoent      
-        this.add(canvas);  
+        this.add(canvas);
     }
 
     //--------------------------------------------------------------------------
@@ -219,7 +218,7 @@ public class Engine extends JFrame implements Runnable {
         RELogger.writelog("fullscreen              : " + engineSettings.fullscreen, this);
         if (engineSettings.fullscreen) {
             this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-        }        
+        }
         RELogger.writelog("Resolution              : " + engineSettings.resolution.getName(), this);
         this.setRenderSize(engineSettings.resolution.width, engineSettings.resolution.heigth);
         //Make our frame visible.
