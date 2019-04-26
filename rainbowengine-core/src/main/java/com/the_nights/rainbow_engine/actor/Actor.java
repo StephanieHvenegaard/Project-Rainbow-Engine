@@ -22,15 +22,7 @@
 // * SOFTWARE.
 // */
 package com.the_nights.rainbow_engine.actor;
-//
-//import the_nights.players.graphics.AnimatedSprite;
-//import the_nights.players.graphics.Sprite;
-//import the_nights.rainbow_engine.core.graphics.Rectangle;
-//import the_nights.rainbow_engine.core.GameObject;
-//import the_nights.rainbow_engine.core.interfaces.ICoreObject;
-//import the_nights.rainbow_engine.core.interfaces.IMoveable;
-//import the_nights.rainbow_engine.core.interfaces.IPlacable;
-//import the_nights.rainbow_engine.core.interfaces.IScreenBuffer;
+
 /**
  *
  * @author Stephanie
