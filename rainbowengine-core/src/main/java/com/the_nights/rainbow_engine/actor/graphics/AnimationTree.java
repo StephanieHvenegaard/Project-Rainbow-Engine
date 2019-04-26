@@ -27,38 +27,51 @@ package com.the_nights.rainbow_engine.actor.graphics;
  *
  * @author Stephanie
  */
-public class ActorAnimationTree {
-    public final int SIZE = 8;
-    public final int RUN_LEFT = 0;
-    public final int ATTACK_LEFT = 1;
-    public final int RUN_UP = 2;
-    public final int RUN_RIGHT = 3;
-    public final int ATTACK_RIGHT = 4;
-    public final int RUN_DOWN = 5;
-    public final int SPAWN = 6;
-    public final int DIE = 7;
-    AnimatedSprite[] animTree;
-    public ActorAnimationTree()
-    {
-        animTree=new AnimatedSprite[SIZE];
+public class AnimationTree {
+
+    public static final int SIZE = 8;
+    public static final int RUN_LEFT = 0;
+    public static final int ATTACK_LEFT = 1;
+    public static final int RUN_UP = 2;
+    public static final int RUN_RIGHT = 3;
+    public static final int ATTACK_RIGHT = 4;
+    public static final int RUN_DOWN = 5;
+    public static final int SPAWN = 6;
+    public static final int DIE = 7;
+    private AnimatedSprite[] animTree;
+    private int currentSprite = -1;
+
+    public AnimationTree() {
+        animTree = new AnimatedSprite[SIZE];
     }
-    public ActorAnimationTree(AnimatedSprite[] animtree)
-    {
+
+    public AnimationTree(AnimatedSprite[] animtree) {
         this();
-        for(int i=0;i<animtree.length;i++)
-        {
-            if(i>=this.animTree.length)break;
+        for (int i = 0; i < animtree.length; i++) {
+            if (i >= this.animTree.length) {
+                break;
+            }
             this.animTree[i] = animtree[i];
         }
     }
-    public void addAnimSprite(int id, AnimatedSprite as)
-    {
-        if(id>=this.animTree.length)return;
-        this.animTree[id] =as;
+
+    public void addAnimSprite(int id, AnimatedSprite as) {
+        if (id >= this.animTree.length) {
+            return;
+        }
+        this.animTree[id] = as;
     }
-    public AnimatedSprite getAnim(int id)
-    {
-        if(id>=this.animTree.length)return null;
-        return this.animTree[id];
-    }            
+
+    public AnimatedSprite getAnim() {
+        if (currentSprite > this.animTree.length || currentSprite < 0) {
+            return null;
+        }
+        return this.animTree[currentSprite];
+    }
+
+    public void setcurrentID(int id) {
+        if (id >= this.animTree.length) {
+            currentSprite = id;
+        }
+    }
 }
