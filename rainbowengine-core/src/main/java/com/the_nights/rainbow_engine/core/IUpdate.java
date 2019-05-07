@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.the_nights.rainbow_engine.core.interfaces;
+package com.the_nights.rainbow_engine.core;
 
 import com.the_nights.rainbow_engine.core.Engine;
 
@@ -29,8 +29,6 @@ import com.the_nights.rainbow_engine.core.Engine;
  *
  * @author Stephanie
  */
-public interface ICutscreen extends IRender, IUpdate {
-    public int getCurrentFrame();
-    public void setCurrentFrame();
-    public boolean isOver();
+public interface IUpdate{
+      public void update(Engine engine);
 }

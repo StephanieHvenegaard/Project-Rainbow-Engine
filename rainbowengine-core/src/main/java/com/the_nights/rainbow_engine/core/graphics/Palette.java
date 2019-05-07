@@ -21,12 +21,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.the_nights.rainbow_engine.core.interfaces;
+package com.the_nights.rainbow_engine.core.graphics;
+
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 /**
  *
  * @author Stephanie
  */
-public interface ICoreObject {
+public class Palette {
+    public static int ID_WHITE = 1;
+    public static int ID_BLACK = 0;
+    public static int ALPHA_RGB = 0xFF00DD;
+    public static String EXTENSION = ".rp";
+    private int[] colors = new int[0];    
+    private String name = "c64";
+
+    public int getColor(int id) {
+        if (id == -1) {
+            return ALPHA_RGB;
+        }
+        return colors[id];
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setColor(int index,int color)
+    {
+        colors[index] = color;
+    }
     
+
+    public int getSize() {
+        return colors.length;
+    }
+
+    public void setColors(int[] colors) {
+        this.colors = colors;
+    }
+
+    
+
 }

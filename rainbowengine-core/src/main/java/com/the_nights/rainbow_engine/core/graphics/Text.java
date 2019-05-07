@@ -22,27 +22,24 @@
  * SOFTWARE.
  */
 package com.the_nights.rainbow_engine.core.graphics;
-
-import java.awt.Color;
-
 /**
  *
  * @author Stephanie
  */
-public class RainbowText {
+public class Text {
 
     private String text;
     private int size;
     private String Font;
     private int xPosition;
     private int yPosition;
-    private int color;                    // TO-DO, Change to pallette color.
+    private RColor color;                    
 
-    public RainbowText() {
+    public Text() {
         this.text = "";
         this.size = 12;
         this.Font = "Consolas";
-        this.color = -1;
+        this.color =new RColor().setID(-1);
         this.xPosition = 0;
         this.yPosition = 0;
     }
@@ -67,37 +64,37 @@ public class RainbowText {
         return yPosition;
     }
 
-    public int getColor() {
+    public RColor getColor() {
         return color;
     }
 
-    public RainbowText setText(String text) {
+    public Text setText(String text) {
         this.text = text;
         return this;
     }
 
-    public RainbowText setSize(int size) {
+    public Text setSize(int size) {
         this.size = size;
         return this;
     }
 
-    public RainbowText setFont(String Font) {
+    public Text setFont(String Font) {
         this.Font = Font;
         return this;
     }
 
-    public RainbowText setxPosition(int xPosition) {
+    public Text setxPosition(int xPosition) {
         this.xPosition = xPosition;
         return this;
     }
 
-    public RainbowText setyPosition(int yPosition) {
+    public Text setyPosition(int yPosition) {
         this.yPosition = yPosition;
         return this;
     }
 
-    public RainbowText setColor(int color) {
-        this.color = color;
+    public Text setColor(int colorID) {
+        this.color = new RColor().setID(colorID);
         return this;
     }
 

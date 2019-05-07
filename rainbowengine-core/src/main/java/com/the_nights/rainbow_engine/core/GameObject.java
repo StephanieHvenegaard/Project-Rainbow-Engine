@@ -23,8 +23,7 @@
  */
 package com.the_nights.rainbow_engine.core;
 
-import com.the_nights.rainbow_engine.core.interfaces.IRender;
-import com.the_nights.rainbow_engine.core.interfaces.IUpdate;
+import com.the_nights.rainbow_engine.core.graphics.IRender;
 
 /**
  *

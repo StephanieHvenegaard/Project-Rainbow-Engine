@@ -27,32 +27,32 @@ package com.the_nights.rainbow_engine.core.graphics;
  *
  * @author Stephanie
  */
-public class RainbowRectangle {
+public class Rectangle {
 
     private int x;
     private int y;
     private int width;
     private int height;
-    private int[] pixels;
+    private RColor[] pixels;
 
-    public RainbowRectangle(int x, int y, int width, int height) {
+    public Rectangle(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.pixels = new int[width * height];
+        this.pixels = new RColor[width * height];
         for (int iy = 0; iy < height; iy++) {
             for (int ix = 0; ix < width; ix++) {
-                pixels[ix + (iy * width)] = -1;
+                pixels[ix + (iy * width)] = new RColor().setID(-1);
             }
         }
     }
 
-    public RainbowRectangle() {
+    public Rectangle() {
         this(0, 0, 0, 0);
     }
 
-    public void generateGrafics(int colorID) {
+    public void generateGrafics(RColor colorID) {
         //pixels = new int[width * height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -61,7 +61,7 @@ public class RainbowRectangle {
         }
     }
     
-    public void generateBorderGrafics(int colorID) {
+    public void generateBorderGrafics(RColor colorID) {
         //pixels = new int[width * height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -69,7 +69,7 @@ public class RainbowRectangle {
                     pixels[x + y * width] = colorID;
                 } 
                 else 
-                    pixels[x + y * width] = -1;
+                    pixels[x + y * width] = new RColor().setID(-1);
             }
         }
     }
@@ -106,7 +106,7 @@ public class RainbowRectangle {
         this.height = height;
     }
 
-    public int[] getPixels() {
+    public RColor[] getPixels() {
         if (pixels != null) {
             return pixels;
         } else {
@@ -115,7 +115,7 @@ public class RainbowRectangle {
         }
     }
 
-    public boolean Overlap(RainbowRectangle other) {
+    public boolean Overlap(Rectangle other) {
         if (other.x >= this.x && other.x <= (this.x + this.width)
         && (other.y >= this.y && other.y <= (this.y + this.height))) {
             return true;
@@ -129,27 +129,3 @@ public class RainbowRectangle {
         }
     }
 }
-
-//        int px = other.getX();
-//        int py = other.getY();
-//        int cornerx = this.x-(this.width/2);
-//        int cornery = this.y+(this.height/2);
-//        int endx = cornerx + this.width;
-//        int endy = cornery - this.height;
-//        if(px >cornerx & px < endx)
-//        {
-//            if(py >cornery && py < endy)
-//            {
-//                return true;
-//            }
-//        }        
-//        return false;        
-//        // If one rectangle is on left side of other
-//        if (this.x > (other.x+other.width) || other.x > (this.x+this.width)) {
-//            return false;
-//        }
-//        // If one rectangle is above other
-//        if (this.y < (other.y+other.height)|| other.y < (this.y+this.height)) {
-//            return false;
-//        }
-//        return true;

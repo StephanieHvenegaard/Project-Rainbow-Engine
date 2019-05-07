@@ -21,36 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.the_nights.rainbow_engine.core.settings;
-
+package com.the_nights.rainbow_engine.core.graphics;
 /**
  *
  * @author Stephanie
  */
-public enum ScreenRessolution {
-    CGA(0, 320, 200), VGA(1, 640, 480), HD720(2, 1280, 720);
-    //public final String res; //representation of direction. 
-    public final int index;
-    public final int width;
-    public final int heigth;
-
-    private ScreenRessolution(int index, int width, int heigth) {
-        //this.res = ressolution;
-        this.index = index;
-        this.width = width;
-        this.heigth = heigth;
-    }
-
-    public static ScreenRessolution fromId(int id) {
-        for (ScreenRessolution res : values()) {
-            if (res.index == id) {
-                return res;
-            }
-        }
-        return null;
-    }
-    public String getName()
-    {
-        return width +"x"+heigth;
-    }
-};
+public interface IRender 
+{    
+       public void render(ScreenBuffer screenBuffer);
+}

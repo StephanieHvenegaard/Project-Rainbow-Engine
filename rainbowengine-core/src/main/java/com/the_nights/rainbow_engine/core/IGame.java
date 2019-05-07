@@ -21,17 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package the_nights.rainbow_engine.core.interfaces;
+package com.the_nights.rainbow_engine.core;
+
+import com.the_nights.rainbow_engine.core.graphics.ScreenBuffer;
+
 /**
  *
  * @author Stephanie
  */
-@Deprecated
-public interface OBS_ISprite{
-
-    public int[] getPixels();
-
-    public int getWidth();
-
-    public int getHeight();
+public interface IGame {
+    public void update(Engine engine);
+    public void render(ScreenBuffer screenbuffer);    
+    public void loadAssets();
+    public String getName();
+    public String getVersionNumber();
+    public void startGame(Engine engine);
+    public void resetGame(Engine engine);
+    public void pauseGame(Engine engine);
+    public void esc(Engine engine);
+    public void quitGame(Engine engine);
+    public int countGameObjects();
 }
