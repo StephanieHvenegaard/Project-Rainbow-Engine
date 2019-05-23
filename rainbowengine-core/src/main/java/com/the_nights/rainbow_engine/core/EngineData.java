@@ -21,12 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.the_nights.rainbow_engine.core.graphics;
+package com.the_nights.rainbow_engine.core;
+
 /**
  *
  * @author Stephanie
  */
-public interface IRender 
-{    
-       public void render(ScreenBuffer screenBuffer);
+public class EngineData {
+     public static final String ENGINE_VERSION = "1.0.0";
+    public static final String DEFAULT_FONT = "Consolas";
 }

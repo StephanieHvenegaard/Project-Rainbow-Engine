@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.the_nights.rainbow_engine.core.graphics;
+package com.the_nights.rainbow_engine.graphics;
 
 /**
  *

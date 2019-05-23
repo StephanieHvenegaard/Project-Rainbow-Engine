@@ -21,25 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.the_nights.rainbow_engine.core.graphics;
+package com.the_nights.rainbow_engine.graphics;
+
 /**
  *
  * @author Stephanie
  */
-public class Text {
+public class RText {
 
     private String text;
     private int size;
     private String Font;
     private int xPosition;
     private int yPosition;
-    private RColor color;                    
+    private RColor color;
 
-    public Text() {
+    public RText() {
         this.text = "";
         this.size = 12;
         this.Font = "Consolas";
-        this.color =new RColor().setID(-1);
+        this.color = new RColor().setID(-1);
         this.xPosition = 0;
         this.yPosition = 0;
     }
@@ -68,34 +69,33 @@ public class Text {
         return color;
     }
 
-    public Text setText(String text) {
+    public RText setText(String text) {
         this.text = text;
         return this;
     }
 
-    public Text setSize(int size) {
+    public RText setSize(int size) {
         this.size = size;
         return this;
     }
 
-    public Text setFont(String Font) {
+    public RText setFont(String Font) {
         this.Font = Font;
         return this;
     }
 
-    public Text setxPosition(int xPosition) {
+    public RText setxPosition(int xPosition) {
         this.xPosition = xPosition;
         return this;
     }
 
-    public Text setyPosition(int yPosition) {
+    public RText setyPosition(int yPosition) {
         this.yPosition = yPosition;
         return this;
     }
 
-    public Text setColor(int colorID) {
+    public RText setColor(int colorID) {
         this.color = new RColor().setID(colorID);
         return this;
     }
-
 }

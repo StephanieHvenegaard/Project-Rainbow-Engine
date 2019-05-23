@@ -23,22 +23,38 @@
  */
 package com.the_nights.rainbow_engine.core;
 
-import com.the_nights.rainbow_engine.core.graphics.ScreenBuffer;
+import com.the_nights.rainbow_engine.graphics.Screenbuffer;
 
 /**
  *
  * @author Stephanie
  */
-public interface IGame {
-    public void update(Engine engine);
-    public void render(ScreenBuffer screenbuffer);    
-    public void loadAssets();
-    public String getName();
-    public String getVersionNumber();
-    public void startGame(Engine engine);
-    public void resetGame(Engine engine);
-    public void pauseGame(Engine engine);
-    public void esc(Engine engine);
-    public void quitGame(Engine engine);
-    public int countGameObjects();
+public abstract class Game {
+
+    public abstract void update(Engine engine);
+
+    public abstract void render(Screenbuffer screenbuffer);
+
+    public abstract void loadAssets();
+
+    public abstract String getName();
+
+    public abstract void startGame(Engine engine);
+
+    public abstract void resetGame(Engine engine);
+
+    public abstract void pauseGame(Engine engine);
+
+    public abstract void esc(Engine engine);
+
+    public abstract int countGameObjects();
+
+    public void quitGame(Engine engine) {
+        engine.stopEngine();
+    }
+
+    public String getVersionNumber() {
+        return "1.0.0";
+    }
+
 }

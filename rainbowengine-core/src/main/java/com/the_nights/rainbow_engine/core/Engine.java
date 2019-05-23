@@ -23,19 +23,20 @@
  */
 package com.the_nights.rainbow_engine.core;
 
-
-import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
+/**
+ *
+ * @author Stephanie
+ */
 public class Engine implements Runnable {
 
     //--------------------------------------------------------------------------
     //Static 
     private boolean _showDebugInfo = false;
-    public static final String ENGINE_VERSION = "1.0.0";
-    public static final String DEFAULT_FONT = "Consolas";
+   
     //--------------------------------------------------------------------------
-    private IGame game;
+    private Game game;
     //--------------------------------------------------------------------------
     // double
     public static final double NANOSEC_TO_SEC = 1000000000.0;
@@ -57,7 +58,6 @@ public class Engine implements Runnable {
 //    private final MouseEventListner mouseEventListner = new MouseEventListner(this);
 //    private final RainbowRectangle debugRec;
     private JFrame frame;
-
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------
@@ -204,6 +204,10 @@ public class Engine implements Runnable {
 //            engineT.start();
 //        }
     }
+    public void stopEngine()
+    {
+        
+    }
 
     private void loadSettings() {
         //Make our program shutdown when we exit out.
@@ -259,14 +263,14 @@ public class Engine implements Runnable {
 //        return screenBuffer;
 //    }
 
-    public IGame getGame() {
+    public Game getGame() {
         return game;
     }
 
     //--------------------------------------------------------------------------
     // Setters
     //--------------------------------------------------------------------------
-    public void setGame(IGame game) {       
+    public void setGame(Game game) {       
         this.game = game;
     }
     public void setRenderSize(int screenWidth, int screenHeight) {
@@ -301,5 +305,4 @@ public class Engine implements Runnable {
 //        this.engineSettings.desiredSpeed = desiredSpeed;
 //    }
 //
-
 }

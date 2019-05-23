@@ -21,15 +21,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.the_nights.rainbow_engine.core;
-
-import com.the_nights.rainbow_engine.core.graphics.IRender;
+package com.the_nights.rainbow_engine.graphics;
 
 /**
  *
  * @author Stephanie
  */
-public abstract class GameObject implements IRender, IUpdate {
- 
-  
+public class Palette {
+
+    public static int ID_WHITE = 1;
+    public static int ID_BLACK = 0;
+    public static int ALPHA_RGB = 0xFF00DD;
+    public static String EXTENSION = ".rp";
+    private int[] colors = new int[0];
+    private String name = "c64";
+
+    public int getColor(int id) {
+        if (id == -1) {
+            return ALPHA_RGB;
+        }
+        return colors[id];
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setColor(int index, int color) {
+        colors[index] = color;
+    }
+
+    public int getSize() {
+        return colors.length;
+    }
+
+    public void setColors(int[] colors) {
+        this.colors = colors;
+    }
+
 }

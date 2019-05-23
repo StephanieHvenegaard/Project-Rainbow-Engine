@@ -23,9 +23,9 @@
  */
 package com.the_nights.rainbow_engine.core;
 
-import com.the_nights.rainbow_engine.core.graphics.Palette;
-import com.the_nights.rainbow_engine.core.graphics.RImage;
-import com.the_nights.rainbow_engine.core.graphics.RColor;
+import com.the_nights.rainbow_engine.graphics.Palette;
+import com.the_nights.rainbow_engine.graphics.RColor;
+import com.the_nights.rainbow_engine.graphics.RImage;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -40,7 +40,7 @@ import javax.imageio.ImageIO;
  *
  * @author Stephanie
  */
-public class FileHandler {
+public class FileHandler  {
 
     public static Palette LoadPallete(String Filename) throws FileNotFoundException {
         Palette pall = new Palette();

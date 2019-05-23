@@ -21,14 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.the_nights.rainbow_engine.core;
-
-import com.the_nights.rainbow_engine.core.Engine;
+package com.the_nights.rainbow_engine.graphics;
 
 /**
  *
  * @author Stephanie
  */
-public interface IUpdate{
-      public void update(Engine engine);
+public class RImage {
+
+    private int height = 0;
+    private int width = 0;
+    private RColor[][] ids;                       // because max colors suported will be 255
+
+    public RImage(int h, int w) {
+        this.height = h;
+        this.width = w;
+        this.ids = new RColor[w][h];              // X first, why later
+    }
+
+    public RColor getID(int x, int y) {
+        return ids[x][y];
+    }
+
+    public void setID(int x, int y, RColor id) {
+        ids[x][y] = id;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
 }

@@ -21,53 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.the_nights.rainbow_engine.core.graphics;
+package com.the_nights.rainbow_engine.viewport;
 
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import com.the_nights.rainbow_engine.core.Game;
 
 /**
  *
  * @author Stephanie
  */
-public class Palette {
-    public static int ID_WHITE = 1;
-    public static int ID_BLACK = 0;
-    public static int ALPHA_RGB = 0xFF00DD;
-    public static String EXTENSION = ".rp";
-    private int[] colors = new int[0];    
-    private String name = "c64";
+public interface IViewPort {
 
-    public int getColor(int id) {
-        if (id == -1) {
-            return ALPHA_RGB;
-        }
-        return colors[id];
-    }
+    public void setGame(Game game);
 
-    public String getName() {
-        return name;
-    }
+    public void start();
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setColor(int index,int color)
-    {
-        colors[index] = color;
-    }
-    
-
-    public int getSize() {
-        return colors.length;
-    }
-
-    public void setColors(int[] colors) {
-        this.colors = colors;
-    }
-
-    
-
+    public void shutdown();
 }
