@@ -21,27 +21,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.the_nights.rainbow_engine.graphics;
+package com.the_nights.rainbow_engine.core.graphics;
+
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 
 /**
  *
  * @author Stephanie
  */
-public class RColor {
+public class Screenbuffer {
 
-    private int colorID = -1; // int easy data type, color will max 8 Bit.
+    private int width = 1;
+    private int height = 1;
+    private BufferedImage viewImage;
+    private int[] view;
+    //private RainbowPalette palette;
 
-    public RColor setID(int id) {
-        if (id >= 0 && id < 256) {
-            RColor c = new RColor();
-            c.colorID = id;
-            return c;
-        } else {
-            return null;
-        }
+    public void setWidth(int w) {
+        this.width = w;
+        viewImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        view = ((DataBufferInt) viewImage.getRaster().getDataBuffer()).getData();
     }
 
-    public int getColorID() {
-        return colorID;
+
+    public void setHeight(int h) {
+        this.height = h;
+        viewImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        view = ((DataBufferInt) viewImage.getRaster().getDataBuffer()).getData();
     }
+    
 }

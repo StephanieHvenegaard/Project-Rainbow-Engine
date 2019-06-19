@@ -21,38 +21,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.the_nights.rainbow_engine.graphics;
+package com.the_nights.rainbow_engine.core.graphics;
 
 /**
  *
  * @author Stephanie
  */
-public class RImage {
+public class RColor {
 
-    private int height = 0;
-    private int width = 0;
-    private RColor[][] ids;                       // because max colors suported will be 255
+    private int colorID = -1; // int easy data type, color will max 8 Bit.
 
-    public RImage(int h, int w) {
-        this.height = h;
-        this.width = w;
-        this.ids = new RColor[w][h];              // X first, why later
+    public RColor setID(int id) {
+        if (id >= 0 && id < 256) {
+            RColor c = new RColor();
+            c.colorID = id;
+            return c;
+        } else {
+            return null;
+        }
     }
 
-    public RColor getID(int x, int y) {
-        return ids[x][y];
+    public int getColorID() {
+        return colorID;
     }
-
-    public void setID(int x, int y, RColor id) {
-        ids[x][y] = id;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
 }

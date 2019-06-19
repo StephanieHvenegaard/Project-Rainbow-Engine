@@ -21,33 +21,56 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.the_nights.rainbow_engine.viewport;
+package com.the_nights.rainbow_engine.core.listner;
 
 import com.the_nights.rainbow_engine.core.Engine;
-import com.the_nights.rainbow_engine.core.Game;
-import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-/**
- *
+ /*
  * @author Stephanie
  */
-public class WindowsFrame extends JFrame implements IViewPort {
-
-    Engine engine = new Engine(this);
-
-    @Override
-    public void setGame(Game game) {
-        engine.setGame(game);
+public class MouseEventListner implements MouseListener,MouseMotionListener{
+    private final Engine engine;
+    public MouseEventListner(Engine engine)
+    {
+        this.engine = engine;
+    }
+    @Override        
+    public void mouseClicked(MouseEvent e) {
+        //System.out.println("Mouse was clicked");
     }
 
     @Override
-    public void start() {
-        engine.startEngine();
+    public void mousePressed(MouseEvent e) {
+        //System.out.println("Mouse was Pressed");
+        //if(e.getButton() == MouseEvent.BUTTON1)
+            //engine.leftClick(e.getX(),e.getY());
     }
 
     @Override
-    public void shutdown() {
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    public void mouseReleased(MouseEvent e) {
+        //System.out.println("Mouse was Released");
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        //System.out.println("Mouse was Entered");
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //System.out.println("Mouse was Exited");
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+    
     }
 }

@@ -23,6 +23,8 @@
  */
 package com.the_nights.rainbow_engine.core;
 
+import com.the_nights.rainbow_engine.core.graphics.ScreenRessolution;
+
 /**
  *
  * @author Stephanie
@@ -32,4 +34,8 @@ public class EngineData {
     public static final String GAME_VERSION = "1.0.0";
     public static final String GAME_NAME = "test-game";
     public static final String DEFAULT_FONT = "Consolas";
+    public static final int LOCKED_FPS =60;
+    public static boolean FULLSCREEN = false;
+    public static boolean BORDERLESS = false;
+    public static ScreenRessolution resolution = ScreenRessolution.CGA; 
 }

@@ -23,7 +23,7 @@
  */
 package com.the_nights.rainbow_engine.core;
 
-import com.the_nights.rainbow_engine.graphics.Screenbuffer;
+import com.the_nights.rainbow_engine.core.graphics.Screenbuffer;
 
 /**
  *
@@ -48,7 +48,7 @@ public abstract class Game {
     public abstract int countGameObjects();
 
     public void quitGame(Engine engine) {
-        engine.stopEngine();
+        engine.shutdownEngine();
     }
 
     public String getVersionNumber() {
