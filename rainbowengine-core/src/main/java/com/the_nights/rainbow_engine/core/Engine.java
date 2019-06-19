@@ -23,6 +23,9 @@
  */
 package com.the_nights.rainbow_engine.core;
 
+import java.awt.Image;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 /**
@@ -37,6 +40,7 @@ public class Engine implements Runnable {
    
     //--------------------------------------------------------------------------
     private Game game;
+    private Thread engineT;
     //--------------------------------------------------------------------------
     // double
     public static final double NANOSEC_TO_SEC = 1000000000.0;
@@ -59,9 +63,10 @@ public class Engine implements Runnable {
 //    private final RainbowRectangle debugRec;
     private JFrame frame;
     //--------------------------------------------------------------------------
-    // Constructor
+    // Constructor / SingleTon
     //--------------------------------------------------------------------------
-    public Engine() {
+    public Engine(JFrame frame) {
+        this.frame = frame;
         //debug rectangle.
 //        debugRec = new RainbowRectangle(0, 0, 140, 50);
 //        debugRec.generateGrafics(0);
@@ -184,28 +189,27 @@ public class Engine implements Runnable {
     // methods
     //--------------------------------------------------------------------------
     public void startEngine() {
-//        if (game != null) {
-//            frame = new JFrame("Rainbow Engine - " + game.getName() + " " + game.getVersionNumber());
-//            try {
-//                Image img = ImageIO.read(getClass().getResourceAsStream("/icon.png"));
-//                this.frame.setIconImage(img);
-//                engineSettings = new EngineSettings();
-//            } catch (IOException ex) {
-//                RELogger.writelog(ex.getMessage(), this);
-//            }
-//            RELogger.writelog("Starting engine version : " + ENGINE_VERSION, this);
-//            //RELogger.writelog("Showing splashscreen", this);
-//            //showSplashScreen();
-//            this.loadSettings();
-//            game.loadAssets();
-////            //get focus.
-//            screenBuffer.getCanvas().requestFocus();
-//            Thread engineT = new Thread(this);
-//            engineT.start();
-//        }
+        if (game != null) {
+            //frame = new JFrame("Rainbow Engine - " + game.getName() + " " + game.getVersionNumber());
+            try {
+                Image img = ImageIO.read(getClass().getResourceAsStream("/icon.png"));
+                this.frame.setIconImage(img);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+            System.out.println("Starting engine version : " + EngineData.ENGINE_VERSION);
+            //showSplashScreen();
+            this.loadSettings();
+            game.loadAssets();
+//            //get focus.
+            frame.requestFocus();
+            engineT = new Thread(this);
+            engineT.setDaemon(true);
+            engineT.start();
+        }
     }
     public void stopEngine()
-    {
+    {        
         
     }
 

@@ -37,8 +37,6 @@ public abstract class Game {
 
     public abstract void loadAssets();
 
-    public abstract String getName();
-
     public abstract void startGame(Engine engine);
 
     public abstract void resetGame(Engine engine);
@@ -54,7 +52,11 @@ public abstract class Game {
     }
 
     public String getVersionNumber() {
-        return "1.0.0";
+        return EngineData.GAME_VERSION;
+    }
+
+    public String getName() {
+        return EngineData.GAME_NAME;
     }
 
 }

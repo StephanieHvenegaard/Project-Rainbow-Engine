@@ -34,7 +34,7 @@ import javax.swing.JFrame;
  */
 public class WindowsFrame extends JFrame implements IViewPort {
 
-    Engine engine = new Engine();
+    Engine engine = new Engine(this);
 
     @Override
     public void setGame(Game game) {

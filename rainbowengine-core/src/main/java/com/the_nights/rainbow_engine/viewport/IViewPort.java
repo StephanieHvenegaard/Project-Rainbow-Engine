@@ -36,4 +36,6 @@ public interface IViewPort {
     public void start();
 
     public void shutdown();
+    
+    public void requestFocus();
 }
