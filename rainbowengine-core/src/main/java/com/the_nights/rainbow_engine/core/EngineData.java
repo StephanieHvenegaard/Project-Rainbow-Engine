@@ -30,7 +30,7 @@ import com.the_nights.rainbow_engine.core.graphics.ScreenRessolution;
  * @author Stephanie
  */
 public class EngineData {
-    public static final String ENGINE_VERSION = "1.0.0";
+    public static final String ENGINE_VERSION = "0.1.4";
     public static final String GAME_VERSION = "1.0.0";
     public static final String GAME_NAME = "test-game";
     public static final String DEFAULT_FONT = "Consolas";

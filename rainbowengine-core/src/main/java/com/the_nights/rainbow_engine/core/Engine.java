@@ -244,7 +244,7 @@ public class Engine implements Runnable {
     private void showSplashScreen() {
         SplashScreen ss = new SplashScreen();
         try {
-            Thread.sleep(1200);
+            Thread.sleep(5000);
         } catch (InterruptedException ex) {
             System.out.println(ex.getMessage());
         }
@@ -312,7 +312,7 @@ public class Engine implements Runnable {
     }
 
     public void setGame(Game game) {
-        System.out.println("setting game : " + game.getName() + " " + game.getVersionNumber());
+        System.out.println("setting game            : " + game.getName() + " " + game.getVersionNumber());
         this.game = game;
     }
 }
